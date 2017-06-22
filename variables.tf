@@ -1,6 +1,5 @@
 variable "name" {
-  default     = "terraform"
-  description = "Name of the virtual network"
+  default = "core-applications-infrastructure"
 }
 
 variable "location" {
@@ -21,5 +20,5 @@ variable "subnetinstance_count" {
 
 variable "env" {
   type    = "string"
-  default = "local"
+  default = "dev"
 }
