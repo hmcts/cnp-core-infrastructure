@@ -4,7 +4,7 @@ variable "name" {
 }
 
 variable "location" {
-  default = "South UK"
+  default = "uksouth"
 }
 
 variable "address_space" {
