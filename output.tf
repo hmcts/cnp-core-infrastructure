@@ -26,18 +26,6 @@ output "resourcegroup_name" {
   value = "${azurerm_resource_group.rg.name}"
 }
 
-output "subnet_gateway_name" {
+output "subnet_ase_name" {
   value = "${azurerm_subnet.sb.0.name}"
-}
-
-output "subnet_frontend_name" {
-  value = "${azurerm_subnet.sb.1.name}"
-}
-
-output "subnet_backend_name" {
-  value = "${azurerm_subnet.sb.2.name}"
-}
-
-output "subnet_data_name" {
-  value = "${azurerm_subnet.sb.3.name}"
 }
