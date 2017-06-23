@@ -20,5 +20,5 @@ variable "subnetinstance_count" {
 
 variable "env" {
   type    = "string"
-  default = "dev"
+  default = "example"
 }

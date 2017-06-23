@@ -8,7 +8,7 @@ def state_store_resource_group = "contino-moj-tf-state"
 def state_store_storage_acccount = "continomojtfstate"
 def bootstrap_state_storage_container = "contino-moj-tfstate-container"
 def product = "core-applications-infra"
-def productEnv = "dev"
+def productEnv = "example"
 
 withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECRET'),
       string(credentialsId: 'tenant_id', variable: 'ARM_TENANT_ID'),
