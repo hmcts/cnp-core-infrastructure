@@ -29,3 +29,7 @@ output "resourcegroup_name" {
 output "subnet_ase_name" {
   value = "${module.vnet.subnet_gateway_name}"
 }
+
+output "ase_name" {
+  value = ["${module.azurerm_app_service_environment.name}"]
+}
