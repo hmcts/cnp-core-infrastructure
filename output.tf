@@ -31,5 +31,5 @@ output "subnet_ase_name" {
 }
 
 output "ase_name" {
-  value = ["${module.azurerm_app_service_environment.name}"]
+  value = ["${module.azurerm_app_service_environment.app_service_environment_name}"]
 }
