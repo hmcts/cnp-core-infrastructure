@@ -35,5 +35,5 @@ output "ase_name" {
 }
 
 output "ase_location" {
-  value = ["${module.azurerm_app_service_environment.location}"]
+  value = ["${module.vnet.location}"]
 }
