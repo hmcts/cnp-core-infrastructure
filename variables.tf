@@ -1,5 +1,5 @@
 variable "name" {
-  default = "core-applications-infrastructure"
+  type = "string"
 }
 
 variable "location" {
@@ -19,6 +19,5 @@ variable "subnetinstance_count" {
 }
 
 variable "env" {
-  type    = "string"
-  default = "example"
+  type = "string"
 }

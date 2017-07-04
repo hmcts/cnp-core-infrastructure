@@ -7,8 +7,8 @@ properties(
 def state_store_resource_group = "contino-moj-tf-state"
 def state_store_storage_acccount = "continomojtfstate"
 def bootstrap_state_storage_container = "contino-moj-tfstate-container"
-def product = "core-applications-infra"
-def productEnv = "example"
+def product = "core-infra"
+def productEnv = "applications"
 
 withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECRET'),
       string(credentialsId: 'tenant_id', variable: 'ARM_TENANT_ID'),
@@ -25,9 +25,9 @@ withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECR
         def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
         env.PATH = "${tfHome}:${env.PATH}"
 
-        sh "terraform init -backend-config \"storage_account_name=${state_store_storage_acccount}\" -backend-config \"container_name=${bootstrap_state_storage_container}\" -backend-config \"resource_group_name=${state_store_resource_group}\" -backend-config \"key=${product}/${productEnv}/terraform.tfstate\"" 
+        sh "terraform init -backend-config \"storage_account_name=${state_store_storage_acccount}\" -backend-config \"container_name=${bootstrap_state_storage_container}\" -backend-config \"resource_group_name=${state_store_resource_group}\" -backend-config \"key=${productEnv}-${product}/${productEnv}/terraform.tfstate\"" 
         sh "terraform get -update=true"
-        sh "terraform plan -var 'env=${productEnv}'"
+        sh "terraform plan -var 'env=${productEnv}' -var 'name=${product}'"
       }
       stage('Terraform Apply - Dev') {
     
@@ -35,7 +35,7 @@ withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECR
         env.PATH = "${tfHome}:${env.PATH}"
 
         
-        sh "terraform apply -var 'env=${productEnv}'"
+        sh "terraform apply -var 'env=${productEnv}' -var 'name=${product}'"
       
         
       }
