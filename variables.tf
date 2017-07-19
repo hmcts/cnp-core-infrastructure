@@ -1,22 +1,5 @@
-variable "azure_subscription" {
-  type = "string"
-}
-
-variable "azure_client_id" {
-  type = "string"
-}
-
-variable "azure_client_secret" {
-  type = "string"
-}
-
-variable "azure_tenant_id" {
-  type = "string"
-}
-
 variable "name" {
-  type    = "string"
-  default = "mo-environment"
+  type = "string"
 }
 
 variable "location" {
@@ -36,6 +19,5 @@ variable "subnetinstance_count" {
 }
 
 variable "env" {
-  type    = "string"
-  default = "dev"
+  type = "string"
 }
