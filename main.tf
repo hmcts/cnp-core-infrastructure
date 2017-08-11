@@ -24,6 +24,6 @@ module "azurerm_app_service_environment" {
   location          = "${var.location}"
   vnetresourceid    = "${azurerm_virtual_network.vnet.id}"
   subnetname        = "${azurerm_subnet.sb.0.name}"
-  resourcegroupname = "${azurerm_subnet.sb.resource_group_name}"
+  resourcegroupname = "${azurerm_subnet.sb.0.resource_group_name}"
   env               = "${var.env}"
 }

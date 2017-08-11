@@ -11,11 +11,11 @@ variable "address_space" {
 }
 
 variable "address_prefixes" {
-  default = ["10.0.0.0/24"]
+  default = ["10.0.0.0/24", "10.0.1.0/24"]
 }
 
 variable "subnetinstance_count" {
-  default = 1
+  default = 2
 }
 
 variable "env" {
