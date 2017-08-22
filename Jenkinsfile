@@ -25,12 +25,15 @@ withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECR
         checkout scm
       }
 
-      stage('Terraform Plan - Applications ') {
-          terraform.plan("applications")
-      }
+      lock("${product}-dev") {
+        stage('Terraform Plan - Dev') {
+            terraform.plan("dev")
+        }
+  
+        stage('Terraform Apply - Dev') {
+            terraform.apply("dev")
+        }
 
-      stage('Terraform Apply - Applications') {
-          terraform.apply("applications")
       }
 
     }
