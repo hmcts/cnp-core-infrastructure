@@ -21,23 +21,38 @@ withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECR
         deleteDir()
         checkout scm
       }
+
+      stage('Terraform Linting Checks'){
+          def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
+          env.PATH = "${tfHome}:${env.PATH}"
+          sh 'terraform fmt --diff=true > diff.out'
+          sh 'if [ ! -s diff.out ]; then echo "Initial Linting OK ..."; else echo "Linting errors found ..." && cat diff.out && exit 1; fi'
+          sh 'terraform validate'
+      }
+
+      stage('Terraform Unit Testing') {
+        docker.image('dsanabria/terraform_validate:latest').inside {
+          sh 'cd tests/unit && python tests.py'
+        }
+      }
+
       stage('Terraform Plan - Dev ') {
         def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
         env.PATH = "${tfHome}:${env.PATH}"
 
-        sh "terraform init -backend-config \"storage_account_name=${state_store_storage_acccount}\" -backend-config \"container_name=${bootstrap_state_storage_container}\" -backend-config \"resource_group_name=${state_store_resource_group}\" -backend-config \"key=${productEnv}-${product}/${productEnv}/terraform.tfstate\"" 
+        sh "terraform init -backend-config \"storage_account_name=${state_store_storage_acccount}\" -backend-config \"container_name=${bootstrap_state_storage_container}\" -backend-config \"resource_group_name=${state_store_resource_group}\" -backend-config \"key=${productEnv}-${product}/${productEnv}/terraform.tfstate\""
         sh "terraform get -update=true"
         sh "terraform plan -var 'env=${productEnv}' -var 'name=${product}'"
       }
       stage('Terraform Apply - Dev') {
-    
+
         def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
         env.PATH = "${tfHome}:${env.PATH}"
 
-        
+
         sh "terraform apply -var 'env=${productEnv}' -var 'name=${product}'"
-      
-        
+
+
       }
     }
   }
