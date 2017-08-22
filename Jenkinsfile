@@ -4,11 +4,13 @@ properties(
          pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 
-def state_store_resource_group = "contino-moj-tf-state"
-def state_store_storage_acccount = "continomojtfstate"
-def bootstrap_state_storage_container = "contino-moj-tfstate-container"
-def product = "core-infra"
-def productEnv = "applications"
+@Library('Infrastructure')
+
+import uk.gov.hmcts.contino.Terraform
+
+def product = "applications-core-infra"
+
+def terraform = new Terraform(this, product)
 
 withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECRET'),
       string(credentialsId: 'tenant_id', variable: 'ARM_TENANT_ID'),
@@ -17,29 +19,25 @@ withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECR
       string(credentialsId: 'object_id', variable: 'ARM_CLIENT_ID')]) {
   try {
     node {
+
       stage('Checkout') {
         deleteDir()
         checkout scm
       }
-      stage('Terraform Plan - Dev ') {
-        def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
-        env.PATH = "${tfHome}:${env.PATH}"
 
-        sh "terraform init -backend-config \"storage_account_name=${state_store_storage_acccount}\" -backend-config \"container_name=${bootstrap_state_storage_container}\" -backend-config \"resource_group_name=${state_store_resource_group}\" -backend-config \"key=${productEnv}-${product}/${productEnv}/terraform.tfstate\"" 
-        sh "terraform get -update=true"
-        sh "terraform plan -var 'env=${productEnv}' -var 'name=${product}'"
-      }
-      stage('Terraform Apply - Dev') {
-    
-        def tfHome = tool name: 'Terraform', type: 'com.cloudbees.jenkins.plugins.customtools.CustomTool'
-        env.PATH = "${tfHome}:${env.PATH}"
+      lock("${product}-dev") {
+        stage('Terraform Plan - Dev') {
+            terraform.plan("dev")
+        }
+  
+        stage('Terraform Apply - Dev') {
+            terraform.apply("dev")
+        }
 
-        
-        sh "terraform apply -var 'env=${productEnv}' -var 'name=${product}'"
-      
-        
       }
+
     }
+
   }
   catch (err) {
     slackSend(
