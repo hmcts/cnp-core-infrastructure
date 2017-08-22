@@ -8,7 +8,7 @@ properties(
 
 import uk.gov.hmcts.contino.Terraform
 
-def product = "core-infra"
+def product = "applications-core-infra"
 
 def terraform = new Terraform(this, product)
 
@@ -25,14 +25,14 @@ withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECR
         checkout scm
       }
 
-      lock("${product}-dev") {
+      lock("${product}-applications") {
 
-        stage('Terraform Plan - Dev ') {
-            terraform.plan("dev") 
+        stage('Terraform Plan - Applications ') {
+            terraform.plan("applications")
         }
 
-        stage('Terraform Apply - Dev') {
-            terraform.apply("dev")
+        stage('Terraform Apply - Applications') {
+            terraform.apply("applications")
         }
 
       }
