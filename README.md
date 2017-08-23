@@ -6,6 +6,7 @@ This project lets you build base infrastructure for a compute environment define
 ## Variables
 To use this project, the values specified in the following variables are used:-
 
+```groovy
 name
 
 location
@@ -17,19 +18,11 @@ address_prefixes
 subnetinstance_count
 
 env
+```
 
 You can see these variables in the variables.tf file, there are defaults already specified in this file, however you can set the variables using terraform variables, so you can set these values in a .tfvars file, or pass them in from a Jenkins file.  Due to this being the foundation infrastructure for the rest of your compute to live in there are a load of outputs produced by the running this terraform code, you can see all the outputs produced in the file output.tf.  Outputs are stored in remote state so that they can be referenced by other projects that will procur compute resource in a given subnet from this infrastructure.
 
-The location and naming of the remote state file and directories is defined in the file Jenkinsfile, refer to the following code fragmemnt:-
-
-```groovy
-def state_store_resource_group = "contino-moj-tf-state"
-def state_store_storage_acccount = "continomojtfstate"
-def bootstrap_state_storage_container = "contino-moj-tfstate-container"
-```
-If you want to change the resource group, storage account, or storage container you can change the values above in the Jenkinsfile
-
-Once this has been configured you can reference remote state data in your project code, this is where you would define you app services, please review the state.tf file in the repository moj-probate-infrastructure for examples of this.  The following code fragment shows how you can create a reference to data in remote state:-
+You can reference remote state data in your project code, this is where you would define you app services, please review the state.tf file in the repository moj-probate-infrastructure for examples of this.  The following code fragment shows how you can create a reference to data in remote state:-
 
 ```terraform
 terraform {
@@ -43,7 +36,7 @@ data "terraform_remote_state" "core_apps_infrastructure" {
     resource_group_name  = "contino-moj-tf-state"
     storage_account_name = "continomojtfstate"
     container_name       = "contino-moj-tfstate-container"
-    key                  = "applications-core-infra/applications/terraform.tfstate"
+    key                  = "applications-core-infra/dev/terraform.tfstate"
   }
 }
 ```
@@ -97,15 +90,26 @@ module "azurerm_app_service_environment" {
 
 The code example above lifted from main.tf in this repository shows how to create ASE, in a given subnet. as you can see this code is referencing the Vnet and Subnet.  This code uses a module that contains the logic to create ASE's, please refer to the repository moj-module-ase for further detail about this module.
 
-The values that define the name and environment for a given Vnet you can be confgiured in the Jenkins file consider the following code fragment from the
-Jenkins file in this repository:-
+The values that define the name and environment for a given Vnet you can be confgiured in the Jenkinsfile, with the product part defined as a groovy var and the env as the parameter passed to the Terraform Jenkins library call. Consider the following code fragment from the Jenkinsfile in this repository:-
 
 ```groovy
-def product = "core-infra"
-def productEnv = "applications"
+def product = "applications-core-infra"
+.
+.
+.
+      lock("${product}-dev") {
+        stage('Terraform Plan - Dev') {
+            terraform.plan("dev")
+        }
+
+        stage('Terraform Apply - Dev') {
+            terraform.apply("dev")
+        }
+
+      }
 ```
 
-In the example above you can see two settings that can be configured product and productEnv. If we used the values specified above it would produce the following infrastructure named in the following way:-
+In the example above you can see settings that can be configured product and the env name to be used when running the terraform plan and apply commands (`dev` in this case). If we used the values specified above it would produce the following infrastructure named in the following way:-
 
 - Resource group called application-core-infra
 - Vnet called applications-core-infra-vnet
