@@ -8,7 +8,7 @@ properties(
 
 import uk.gov.hmcts.contino.Terraform
 
-def product = "core-infra-sample"
+def product = "applications-core-infra"
 
 def terraform = new Terraform(this, product)
 
