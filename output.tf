@@ -26,10 +26,11 @@ output "resourcegroup_name" {
   value = "${azurerm_resource_group.rg.name}"
 }
 
-output "ase_name" {
+/*output "ase_name" {
   value = ["${module.azurerm_app_service_environment.app_service_environment_name}"]
 }
 
 output "ase_location" {
   value = ["${azurerm_resource_group.rg.location}"]
 }
+*/
