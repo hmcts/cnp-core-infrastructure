@@ -11,7 +11,7 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 resource "azurerm_subnet" "sb" {
-  count                = "${length(split(",", var.address_prefixes))}"
+  count                = "${var.subnetinstance_count}"
   name                 = "${var.name}-subnet-${count.index}-${var.env}"
   resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}"
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
