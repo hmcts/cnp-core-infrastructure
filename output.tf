@@ -34,3 +34,4 @@ output "ase_location" {
   value = ["${azurerm_resource_group.rg.location}"]
 }
 */
+
