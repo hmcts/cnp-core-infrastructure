@@ -19,11 +19,11 @@ resource "azurerm_subnet" "sb" {
 }
 
 module "azurerm_app_service_environment" {
-  source            = "git::https://7fed81743d89f663cc1e746f147c83a74e7b1318@github.com/contino/moj-module-ase?ref=0.0.3"
+  source            = "git::https://7fed81743d89f663cc1e746f147c83a74e7b1318@github.com/contino/moj-module-ase?ref=0.0.18"
   name              = "${var.name}"
   location          = "${var.location}"
   vnetresourceid    = "${azurerm_virtual_network.vnet.id}"
-  subnetname        = "${azurerm_subnet.sb.0.name}"
-  resourcegroupname = "${azurerm_subnet.sb.0.resource_group_name}"
+  subnetname        = "${azurerm_subnet.sb.1.name}"
+  resourcegroupname = "${azurerm_subnet.sb.1.resource_group_name}"
   env               = "${var.env}"
 }

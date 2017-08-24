@@ -1,6 +1,6 @@
 variable "name" {
   type    = "string"
-  default = "core-infra-applications"
+  default = "core-infra-sample"
 }
 
 variable "location" {
