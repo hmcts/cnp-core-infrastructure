@@ -29,24 +29,23 @@ withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECR
       def envSuffix = (env.BRANCH_NAME == 'master') ? 'dev' : env.BRANCH_NAME
 
       lock("${product}-${envSuffix}") {
-        stage('Terraform Plan - Dev') {
+        stage("Terraform Plan - ${envSuffix}") {
             terraform.plan(envSuffix)
         }
   
-        stage('Terraform Apply - Dev') {
+        stage("Terraform Apply - ${envSuffix}") {
             terraform.apply(envSuffix)
         }
 
       }
-
     }
 
   }
   catch (err) {
-//    slackSend(
-//        channel: "#${uk-moj-pipeline}",
-//        color: 'danger',
-//        message: "${env.JOB_NAME}:  <${env.BUILD_URL}console|Build ${env.BUILD_DISPLAY_NAME}> has FAILED")
+    slackSend(
+        channel: "#${uk-moj-pipeline}",
+        color: 'danger',
+        message: "${env.JOB_NAME}:  <${env.BUILD_URL}console|Build ${env.BUILD_DISPLAY_NAME}> has FAILED")
     throw err
   }
 
