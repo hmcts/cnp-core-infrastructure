@@ -1,15 +1,16 @@
 #!groovy
+@Library('Infrastructure')
+import uk.gov.hmcts.contino.Terraform
+
+//GITHUB_PROTOCOL = "https"
+//GITHUB_REPO = "github.com/contino/moj-core-infrastructure/"
+
 properties(
         [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/contino/moj-core-infrastructure'],
          pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 
-@Library('Infrastructure')
-
-import uk.gov.hmcts.contino.Terraform
-
 def product = "sandbox-core-infra"
-
 def terraform = new Terraform(this, product)
 
 withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECRET'),
@@ -40,10 +41,10 @@ withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECR
 
   }
   catch (err) {
-    slackSend(
-        channel: "#${uk-moj-pipeline}",
-        color: 'danger',
-        message: "${env.JOB_NAME}:  <${env.BUILD_URL}console|Build ${env.BUILD_DISPLAY_NAME}> has FAILED")
+//    slackSend(
+//        channel: "#${uk-moj-pipeline}",
+//        color: 'danger',
+//        message: "${env.JOB_NAME}:  <${env.BUILD_URL}console|Build ${env.BUILD_DISPLAY_NAME}> has FAILED")
     throw err
   }
 
