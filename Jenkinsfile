@@ -26,13 +26,15 @@ withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECR
         checkout scm
       }
 
-      lock("${product}-dev") {
+      def envSuffix = (env.BRANCH_NAME == 'master') ? 'dev' : env.BRANCH_NAME
+
+      lock("${product}-${envSuffix}") {
         stage('Terraform Plan - Dev') {
-            terraform.plan("dev")
+            terraform.plan(envSuffix)
         }
   
         stage('Terraform Apply - Dev') {
-            terraform.apply("dev")
+            terraform.apply(envSuffix)
         }
 
       }
