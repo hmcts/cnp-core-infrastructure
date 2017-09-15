@@ -1,9 +1,6 @@
 #!groovy
-@Library('Infrastructure@helpers-for-jenkins-test-steps')
+@Library('Infrastructure@48d2e305a135ff26d54c4c250dc4dc268a0bf842')
 import uk.gov.hmcts.contino.Terraform
-
-//GITHUB_PROTOCOL = "https"
-//GITHUB_REPO = "github.com/contino/moj-core-infrastructure/"
 
 properties(
         [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/contino/moj-core-infrastructure'],
