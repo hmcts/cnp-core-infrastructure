@@ -7,7 +7,7 @@ properties(
          pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 
-def product = "sandbox-core-infra"
+def product = "core-infra-sample"
 def terraform = new Terraform(this, product)
 
 withCredentials([string(credentialsId: 'sp_password', variable: 'ARM_CLIENT_SECRET'),
