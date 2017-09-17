@@ -1,12 +1,11 @@
 #!groovy
-@Library('Infrastructure@different-approach')
-import uk.gov.hmcts.contino.*
+@Library('Infrastructure@different-approach') _
 
 properties([[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/contino/moj-core-infrastructure'],
  pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 
-def product = "core-infra-sample"
+product = "core-infra-sample"
 
 try {
   node {
@@ -19,14 +18,15 @@ try {
 
       def envSuffix = (env.BRANCH_NAME == 'master') ? 'dev' : env.BRANCH_NAME
       lock("${product}-${envSuffix}") {
+
         stage("Terraform Plan - ${envSuffix}") {
-          terraform.plan envSuffix
+          terraform.ini(this)
+          terraform.plan(envSuffix)
         }
 
         stage("Terraform Apply - ${envSuffix}") {
           terraform.apply(envSuffix)
         }
-
       }
     }
   }
