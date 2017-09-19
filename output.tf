@@ -1,29 +1,27 @@
-/*output "vnet_id" {
-  value = "${azurerm_virtual_network.vnet.id}"
+output "vnet_id" {
+  value = "${module.vnet.vnet_id}"
 }
 
 output "vnetname" {
-  value = "${azurerm_virtual_network.vnet.name}"
+  value = "${module.vnet.name}"
 }
 
 output "subnet_ids" {
-  value = ["${azurerm_subnet.sb.*.id}"]
+  value = ["${module.vnet.subnet_ids}"]
 }
 
 output "subnet_names" {
-  value = ["${azurerm_subnet.sb.*.name}"]
+  value = ["${module.vnet.subnet_names}"]
 }
 
 output "subnetaddress_prefixes" {
-  value = ["${azurerm_subnet.sb.*.address_prefix}"]
+  value = ["${module.vnet.subnetaddress_prefixes}"]
 }
 
 output "resourcegroup_id" {
-  value = "${azurerm_resource_group.rg.id}"
+  value = "${module.vnet.resourcegroup_id}"
 }
 
 output "resourcegroup_name" {
-  value = "${azurerm_resource_group.rg.name}"
+  value = "${module.vnet.resourcegroup_name}"
 }
-*/
-
