@@ -1,5 +1,5 @@
 module "vnet" {
-  source           = "git::https://7fed81743d89f663cc1e746f147c83a74e7b1318@github.com/contino/moj-module-vnet?ref=master"
+  source           = "git::https://66ef3c054a0798d24a36f274c19041e92832687c@github.com/contino/moj-module-vnet?ref=master"
   name             = "${var.name}"
   location         = "${var.location}"
   address_space    = "${var.address_space}"
