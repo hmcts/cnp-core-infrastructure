@@ -1,4 +1,4 @@
-output "vnet_id" {
+/*output "vnet_id" {
   value = "${azurerm_virtual_network.vnet.id}"
 }
 
@@ -24,14 +24,6 @@ output "resourcegroup_id" {
 
 output "resourcegroup_name" {
   value = "${azurerm_resource_group.rg.name}"
-}
-
-/*output "ase_name" {
-  value = ["${module.azurerm_app_service_environment.app_service_environment_name}"]
-}
-
-output "ase_location" {
-  value = ["${azurerm_resource_group.rg.location}"]
 }
 */
 
