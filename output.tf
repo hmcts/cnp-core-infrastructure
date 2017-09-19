@@ -3,7 +3,7 @@ output "vnet_id" {
 }
 
 output "vnetname" {
-  value = "${module.vnet.name}"
+  value = "${module.vnet.vnetname}"
 }
 
 output "subnet_ids" {
