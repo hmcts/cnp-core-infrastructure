@@ -8,11 +8,12 @@ module "vnet" {
 }
 
 module "waf" {
-  source         = "git::https://66ef3c054a0798d24a36f274c19041e92832687c@github.com/contino/moj-module-waf?ref=master"
-  product        = "${var.name}"
-  location       = "${var.location}"
-  env            = "${var.env}"
-  vnetname       = "${module.vnet.vnet_id}"
-  subnetname     = "${module.vnet.subnet_names[0]}"
-  backendaddress = "0.0.0.0"
+  source            = "git::https://66ef3c054a0798d24a36f274c19041e92832687c@github.com/contino/moj-module-waf?ref=master"
+  product           = "${var.name}"
+  location          = "${var.location}"
+  env               = "${var.env}"
+  vnetname          = "${module.vnet.vnet_id}"
+  subnetname        = "${module.vnet.subnet_names[0]}"
+  backendaddress    = "0.0.0.0"
+  resourcegroupname = "${module.vnet.resourcegroup_name}"
 }
