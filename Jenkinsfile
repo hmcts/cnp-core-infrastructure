@@ -5,7 +5,7 @@ properties([[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com
  pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 
-product = "sandbox-core-infra"
+product = "core-infra-sample"
 
 try {
   node {
