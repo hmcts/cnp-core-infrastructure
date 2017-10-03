@@ -18,6 +18,7 @@ variable "env" {
   type = "string"
 }
 
+#* details for infrastructure-bootstrap statefile
 variable "vnetA_state_rg_name" {
   type = "string"
   default="calinvnetpeering-tfstate"
