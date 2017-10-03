@@ -17,3 +17,24 @@ variable "address_prefixes" {
 variable "env" {
   type = "string"
 }
+
+variable "vnetA_state_rg_name" {
+  type = "string"
+  default="calinvnetpeering-tfstate"
+}
+
+variable "vnetA_state_storageAccount_name" {
+  type = "string"
+  default="calinvnetpeeringtfstate"
+}
+
+variable "vnetA_state_container_name" {
+  type = "string"
+  default="calinvnetpeeringtfstate"
+}
+
+variable "vnetA_state_key" {
+  description = "Location of state file for Resource Group that contains the vnet to be peered with local one"
+  type = "string"
+  default="bootstrap/calinvnetpeering/terraform.tfstate"
+}
