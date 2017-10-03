@@ -2,7 +2,7 @@ terraform {
   backend "azure" {}
 }
 
-data "terraform_remote_state" "vnetA_state_location" {
+data "terraform_remote_state" "vnetA_state" {
   backend = "azure"
 
   config {
