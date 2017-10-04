@@ -26,8 +26,8 @@ resource "azurerm_virtual_network" "vnetA" {
 }
 
 resource "azurerm_virtual_network_peering" "vnetpeering" {
-  name                      = "peerVnetAtoLocal"
+  name                      = "peer-${data.terraform_remote_state.vnetA_state.mgmt_vnet_name}-${module.vnet.vnetname}"
   resource_group_name       = "${data.terraform_remote_state.vnetA_state.mgmt_vnet_rg}"
   virtual_network_name      = "${data.terraform_remote_state.vnetA_state.mgmt_vnet_name}"
-  remote_virtual_network_id = "${module.vnet.id}"
+  remote_virtual_network_id = "${module.vnet.vnet_id}"
 }
