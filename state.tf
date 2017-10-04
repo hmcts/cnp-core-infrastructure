@@ -20,7 +20,7 @@ data "terraform_remote_state" "vnetA_state" {
     resource_group_name  = "calinvnetpeering-tfstate"
     storage_account_name = "calinvnetpeeringtfstate"
     container_name       = "calinvnetpeeringtfstate"
-    key                  = "bootstrap/calinvnetpeering/terraform.tfstate"
+    key                  = "bootstrap/calinvnetpeering/terrarform.tfstate"
   }
 }
 
