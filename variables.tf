@@ -21,21 +21,17 @@ variable "env" {
 #* details for infrastructure-bootstrap statefile
 variable "vnetA_state_rg_name" {
   type = "string"
-  default="calinvnetpeering-tfstate"
 }
 
 variable "vnetA_state_storageAccount_name" {
   type = "string"
-  default="calinvnetpeeringtfstate"
 }
 
 variable "vnetA_state_container_name" {
   type = "string"
-  default="calinvnetpeeringtfstate"
 }
 
 variable "vnetA_state_key" {
-  description = "Location of state file for Resource Group that contains the vnet to be peered with local one"
+  description = "Location of state file for Resource Group that contains the vnet to be peered with local one including the .tfstate file name"
   type = "string"
-  default="bootstrap/calinvnetpeering/terrarform.tfstate"
 }
