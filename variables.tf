@@ -37,5 +37,5 @@ variable "vnetA_state_container_name" {
 variable "vnetA_state_key" {
   description = "Location of state file for Resource Group that contains the vnet to be peered with local one"
   type = "string"
-  default="bootstrap/calinvnetpeering/terraform.tfstate"
+  default="bootstrap/calinvnetpeering/terrarform.tfstate"
 }
