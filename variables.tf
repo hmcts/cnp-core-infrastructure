@@ -25,3 +25,5 @@ variable "tenant_id" {
 variable "client_id" {
   type = "string"
 }
+
+variable "sites_obj_id" {}
