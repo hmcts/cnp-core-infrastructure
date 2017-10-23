@@ -17,3 +17,13 @@ module "waf" {
   backendaddress    = "0.0.0.0"
   resourcegroupname = "${module.vnet.resourcegroup_name}"
 }
+
+module "key_vault" {
+  source              = "git::https://66ef3c054a0798d24a36f274c19041e92832687c@github.com/contino/moj-module-key-vault?ref=master"
+  name                = "${var.name}"
+  location            = "${var.location}"
+  env                 = "${var.env}"
+  resource_group_name = "${module.vnet.resourcegroup_name}"
+  tenant_id           = "${var.tenant_id}"
+  object_id           = "${var.client_id}"
+}
