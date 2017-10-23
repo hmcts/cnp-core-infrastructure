@@ -20,7 +20,7 @@ module "waf" {
 
 module "key_infra_vault" {
   source              = "git::https://66ef3c054a0798d24a36f274c19041e92832687c@github.com/contino/moj-module-key-vault?ref=master"
-  name                = "${var.name}_infra_vault"
+  name                = "${var.name}-infra-vault"
   location            = "${var.location}"
   env                 = "${var.env}"
   resource_group_name = "${module.vnet.resourcegroup_name}"
@@ -30,7 +30,7 @@ module "key_infra_vault" {
 
 module "key_app_vault" {
   source              = "git::https://66ef3c054a0798d24a36f274c19041e92832687c@github.com/contino/moj-module-key-vault?ref=master"
-  name                = "${var.name}_app_vault"
+  name                = "${var.name}-app-vault"
   location            = "${var.location}"
   env                 = "${var.env}"
   resource_group_name = "${module.vnet.resourcegroup_name}"
