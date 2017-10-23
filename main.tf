@@ -18,14 +18,17 @@ module "waf" {
   resourcegroupname = "${module.vnet.resourcegroup_name}"
 }
 
+data "azurerm_client_config" "current" {}
+
 module "key_infra_vault" {
   source              = "git::https://66ef3c054a0798d24a36f274c19041e92832687c@github.com/contino/moj-module-key-vault?ref=master"
   name                = "moj-inf-vault"
   location            = "${var.location}"
   env                 = "${var.env}"
   resource_group_name = "${module.vnet.resourcegroup_name}"
-  tenant_id           = "${var.tenant_id}"
-  object_id           = "${var.client_id}"
+  tenant_id           = "${data.azurerm_client_config.current.tenant_id}"
+  object_id           = "${data.azurerm_client_config.current.service_principal_object_id}"
+  sites_obj_id        = "${var.sites_obj_id}"
 }
 
 module "key_app_vault" {
@@ -34,6 +37,7 @@ module "key_app_vault" {
   location            = "${var.location}"
   env                 = "${var.env}"
   resource_group_name = "${module.vnet.resourcegroup_name}"
-  tenant_id           = "${var.tenant_id}"
-  object_id           = "${var.client_id}"
+  tenant_id           = "${data.azurerm_client_config.current.tenant_id}"
+  object_id           = "${data.azurerm_client_config.current.service_principal_object_id}"
+  sites_obj_id        = "${var.sites_obj_id}"
 }
