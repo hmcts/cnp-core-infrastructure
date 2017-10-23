@@ -18,7 +18,7 @@ module "waf" {
   resourcegroupname = "${module.vnet.resourcegroup_name}"
 }
 
-module "key_vault" {
+module "key_infra_vault" {
   source              = "git::https://66ef3c054a0798d24a36f274c19041e92832687c@github.com/contino/moj-module-key-vault?ref=master"
   name                = "${var.name}_infra_vault"
   location            = "${var.location}"
@@ -28,7 +28,7 @@ module "key_vault" {
   object_id           = "${var.client_id}"
 }
 
-module "key_vault" {
+module "key_app_vault" {
   source              = "git::https://66ef3c054a0798d24a36f274c19041e92832687c@github.com/contino/moj-module-key-vault?ref=master"
   name                = "${var.name}_app_vault"
   location            = "${var.location}"
