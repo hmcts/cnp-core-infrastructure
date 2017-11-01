@@ -1,5 +1,5 @@
 module "vnet" {
-  source           = "git::https://66ef3c054a0798d24a36f274c19041e92832687c@github.com/contino/moj-module-vnet?ref=master"
+  source           = "git::https://23a108ab5ea17c28372a130d72aa60ea0761839b@github.com/contino/moj-module-vnet?ref=master"
   name             = "${var.name}"
   location         = "${var.location}"
   address_space    = "${var.address_space}"
@@ -8,7 +8,7 @@ module "vnet" {
 }
 
 module "waf" {
-  source            = "git::https://66ef3c054a0798d24a36f274c19041e92832687c@github.com/contino/moj-module-waf?ref=master"
+  source            = "git::https://23a108ab5ea17c28372a130d72aa60ea0761839b@github.com/contino/moj-module-waf?ref=master"
   product           = "${var.name}"
   location          = "${var.location}"
   env               = "${var.env}"
@@ -21,7 +21,7 @@ module "waf" {
 data "azurerm_client_config" "current" {}
 
 module "key_infra_vault" {
-  source              = "git::https://66ef3c054a0798d24a36f274c19041e92832687c@github.com/contino/moj-module-key-vault?ref=master"
+  source              = "git::https://23a108ab5ea17c28372a130d72aa60ea0761839b@github.com/contino/moj-module-key-vault?ref=master"
   name                = "moj-inf-vault"
   location            = "${var.location}"
   env                 = "${var.env}"
@@ -32,7 +32,7 @@ module "key_infra_vault" {
 }
 
 module "key_app_vault" {
-  source              = "git::https://66ef3c054a0798d24a36f274c19041e92832687c@github.com/contino/moj-module-key-vault?ref=master"
+  source              = "git::https://23a108ab5ea17c28372a130d72aa60ea0761839b@github.com/contino/moj-module-key-vault?ref=master"
   name                = "moj-app-vault"
   location            = "${var.location}"
   env                 = "${var.env}"
