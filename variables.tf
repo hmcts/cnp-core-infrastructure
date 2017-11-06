@@ -18,14 +18,15 @@ variable "env" {
   type = "string"
 }
 
-variable "tenant_id" {
-  type = "string"
-}
 
-variable "client_id" {
-  type = "string"
-}
+#variable "tenant_id" {
+#  type = "string"
+#}
 
-variable "sites_obj_id" {
-  default = "cc9a2807-e98c-485c-9c9f-7d991e58755c"
-}
+#variable "client_id" {
+#  type = "string"
+#}
+
+#variable "sites_obj_id" {
+#  default = "cc9a2807-e98c-485c-9c9f-7d991e58755c"
+#}
