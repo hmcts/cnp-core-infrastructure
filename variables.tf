@@ -17,3 +17,11 @@ variable "address_prefixes" {
 variable "env" {
   type = "string"
 }
+
+variable "storage_account_name" {}
+
+variable "tenant_id" {}
+
+variable "client_id" {}
+
+variable "subscription_id" {}
