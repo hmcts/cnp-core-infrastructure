@@ -18,7 +18,6 @@ variable "env" {
   type = "string"
 }
 
-variable "storage_account_name" {}
 
 variable "tenant_id" {}
 
