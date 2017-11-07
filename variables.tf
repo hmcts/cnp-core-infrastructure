@@ -17,3 +17,5 @@ variable "address_prefixes" {
 variable "env" {
   type = "string"
 }
+
+variable "pfxPass" {}

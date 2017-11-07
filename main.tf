@@ -16,4 +16,5 @@ module "waf" {
   subnetname        = "${module.vnet.subnet_names[0]}"
   backendaddress    = "0.0.0.0"
   resourcegroupname = "${module.vnet.resourcegroup_name}"
+  pfxPass           = "${var.pfxPass}"
 }
