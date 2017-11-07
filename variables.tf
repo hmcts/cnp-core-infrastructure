@@ -27,3 +27,5 @@ variable "client_id" {}
 variable "subscription_id" {}
 
 variable "secret_access_key" {}
+
+variable "pfxPass" {}
