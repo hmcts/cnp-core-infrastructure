@@ -17,3 +17,21 @@ variable "address_prefixes" {
 variable "env" {
   type = "string"
 }
+
+#* details for infrastructure-bootstrap statefile
+variable "vnetA_state_rg_name" {
+  type = "string"
+}
+
+variable "vnetA_state_storageAccount_name" {
+  type = "string"
+}
+
+variable "vnetA_state_container_name" {
+  type = "string"
+}
+
+variable "vnetA_state_key" {
+  description = "Location of state file for Resource Group that contains the vnet to be peered with local one including the .tfstate file name"
+  type = "string"
+}
