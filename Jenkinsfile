@@ -1,5 +1,5 @@
 #!groovy
-@Library('Infrastructure') _
+@Library('Infrastructure@private-ase') _
 
 properties([[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/contino/moj-core-infrastructure'],
  pipelineTriggers([[$class: 'GitHubPushTrigger']])]
