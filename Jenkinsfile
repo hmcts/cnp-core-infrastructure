@@ -1,11 +1,16 @@
 #!groovy
-@Library('Infrastructure@private-ase') _
+@Library('Infrastructure@cnp-253') _
 
 product = "core-infra"
 platform = "nonprod"
 
 node {
   withSubscription(platform){
+    def envSuffix = (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'private-ase') ? platform : env.BRANCH_NAME
+
+    stage('state store init') {
+      stateStoreInit(platform)
+    }
 
     stage('Checkout') {
       deleteDir()
@@ -13,7 +18,7 @@ node {
            branch: 'private-ase'])
     }
 
-    def envSuffix = (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'private-ase') ? platform : env.BRANCH_NAME
+
 
     lock("${product}-${envSuffix}") {
 
