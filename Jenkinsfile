@@ -1,14 +1,15 @@
 #!groovy
 @Library('Infrastructure@private-ase') _
 
-product = "core-infra-sample"
-platform = "prod"
+product = "core-infra"
+platform = "nonprod"
+
 node {
-  withSubsription(platform){
+  withSubscription(platform){
 
     stage('Checkout') {
       deleteDir()
-      git([url   : 'git@github.com/contino/moj-core-infrastructure',
+      git([url   : 'git@github.com:contino/moj-core-infrastructure.git',
            branch: 'private-ase'])
     }
 
