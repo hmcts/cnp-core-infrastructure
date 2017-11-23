@@ -4,7 +4,7 @@
 product = "core-infra-sample"
 platform = "prod"
 node {
-  platformSetup {
+  withSubsription(platform){
 
     stage('Checkout') {
       deleteDir()
