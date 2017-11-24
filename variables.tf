@@ -27,4 +27,4 @@ variable "subscription_id" {}
 
 variable "secret_access_key" {}
 
-variable "pfxPass" {}
+//variable "pfxPass" {}

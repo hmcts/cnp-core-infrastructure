@@ -8,7 +8,7 @@ module "vnet" {
 }
 
 module "waf" {
-  source            = "git::git@github.com:contino/moj-module-waf?ref=private-ase"
+  source            = "git::git@github.com:contino/moj-module-waf?ref=master"//private-ase"
   product           = "${var.name}"
   location          = "${var.location}"
   env               = "${var.env}"
@@ -16,7 +16,7 @@ module "waf" {
   subnetname        = "${module.vnet.subnet_names[0]}"
   backendaddress    = "0.0.0.0"
   resourcegroupname = "${module.vnet.resourcegroup_name}"
-  pfxPass           = "${var.pfxPass}"
+ // pfxPass           = "${var.pfxPass}"
 }
 /*
 module "consul" {
