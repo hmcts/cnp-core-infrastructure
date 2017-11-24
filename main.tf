@@ -18,7 +18,7 @@ module "waf" {
   resourcegroupname = "${module.vnet.resourcegroup_name}"
  // pfxPass           = "${var.pfxPass}"
 }
-/*
+
 module "consul" {
   source                      = "git::git@github.com:contino/moj-module-consul?ref=master"
   subscription_id             = "${var.subscription_id}"
@@ -34,4 +34,3 @@ module "consul" {
   location                    = "${var.location}"
   cluster_name                = "consul"
 }
-*/
