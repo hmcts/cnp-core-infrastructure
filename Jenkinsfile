@@ -5,6 +5,7 @@ product = "core-infra"
 platform = "nonprod"
 
 node {
+  env.PATH="$env.PATH:/usr/local/bin"
   withSubscription(platform){
     def envSuffix = (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'private-ase') ? platform : env.BRANCH_NAME
 
