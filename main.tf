@@ -5,6 +5,7 @@ module "vnet" {
   address_space    = "${var.address_space}"
   address_prefixes = "${var.address_prefixes}"
   env              = "${var.env}"
+  lb_private_ip_address = "10.0.2.4"
 }
 
 module "waf" {
@@ -33,4 +34,6 @@ module "consul" {
   image_uri                   = "/subscriptions/1c4f0704-a29e-403d-b719-b90c34ef14c9/resourceGroups/mgmt-vmimg-store-nonprod/providers/Microsoft.Compute/images/moj-centos-consul-241117-161902"
   location                    = "${var.location}"
   cluster_name                = "consul"
+  lb_private_ip_address       = "10.0.2.4"
+
 }
