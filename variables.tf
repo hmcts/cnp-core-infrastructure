@@ -28,7 +28,7 @@ variable "subscription_id" {}
 variable "secret_access_key" {}
 
 variable "lb_private_ip_address" {
-  default = "10.98.8.25"
+  default = "10.98.8.4"
 }
 
 //variable "pfxPass" {}
