@@ -3,7 +3,7 @@
 // @Library('Infrastructure@cnp-253') _
 
 product = "core-infra"
-platform = "prodA"
+platform = "pa"
 
 node {
   env.PATH="$env.PATH:/usr/local/bin"
