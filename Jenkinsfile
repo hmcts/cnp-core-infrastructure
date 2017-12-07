@@ -1,8 +1,9 @@
 #!groovy
-@Library('Infrastructure@cnp-253') _
+//commenting as default brach (whatever is now used on jenkins) should be used now
+// @Library('Infrastructure@cnp-253') _
 
 product = "core-infra"
-platform = "nonprod"
+platform = "prodA"
 
 node {
   env.PATH="$env.PATH:/usr/local/bin"
@@ -19,9 +20,12 @@ node {
            branch: 'private-ase'])
     }
 
-
-
     lock("${product}-${envSuffix}") {
+
+      env.TF_VAR_vmimage_uri=sh "\$(az image list --resource-group mgmt-vmimg-store-${envSuffix} --query \"[?contains(name,'centos-consul')].{name: name, id: id}\" --output tsv | sort | awk 'END { print \$2 }')"
+      echo "Picked following vmimage for consul: ${env.TF_VAR_vmimage_uri}"
+
+      createwafcert()
 
       stage("Terraform Plan - ${envSuffix}") {
         terraform.ini(this)

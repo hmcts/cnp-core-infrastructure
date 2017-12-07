@@ -31,4 +31,5 @@ variable "lb_private_ip_address" {
   default = "10.98.8.4"
 }
 
+variable "vmimage_uri" {}
 //variable "pfxPass" {}
