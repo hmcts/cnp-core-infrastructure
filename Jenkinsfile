@@ -1,6 +1,6 @@
 #!groovy
 //commenting as default brach (whatever is now used on jenkins) should be used now
-// @Library('Infrastructure@cnp-253') _
+@Library('Infrastructure@subscriptionsuffix') _
 
 product = "core-infra"
 platform = "pa"
