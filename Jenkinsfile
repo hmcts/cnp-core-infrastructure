@@ -29,7 +29,7 @@ node {
       createwafcert()
 
       stage("Terraform Plan - ${envSuffix}") {
-        terraform.ini(this)
+        terraform.ini(product, this)
         terraform.plan(envSuffix)
       }
 
