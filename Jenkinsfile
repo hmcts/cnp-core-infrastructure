@@ -22,7 +22,8 @@ node {
 
     lock("${product}-${envSuffix}") {
 
-      env.TF_VAR_vmimage_uri=sh "\$(az image list --resource-group mgmt-vmimg-store-${env.SUBSCRIPTION_SUFFIX} --query \"[?contains(name,'centos-consul')].{name: name, id: id}\" --output tsv | sort | awk 'END { print \$2 }')"
+      env.TF_VAR_vmimage_uri=sh(script:"az image list --resource-group mgmt-vmimg-store-${env.SUBSCRIPTION_SUFFIX} --query \"[?contains(name,'centos-consul')].{name: name, id: id}\" --output tsv | sort | awk 'END { print \$2 }'",
+                                returnStdout:true).trim()
       echo "Picked following vmimage for consul: ${env.TF_VAR_vmimage_uri}"
 
       createwafcert()
