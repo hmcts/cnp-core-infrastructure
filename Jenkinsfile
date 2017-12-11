@@ -3,7 +3,6 @@
 @Library('Infrastructure@subscriptionsuffix') _
 
 node {
-  env.PATH = "$env.PATH:/usr/local/bin"
 
   stage('Checkout') {
     deleteDir()
@@ -20,6 +19,6 @@ node {
   }
   createwafcert()
 
-  spinInfra(productName="core-infra", environment="pa", subscription=subscription, planOnly=true)
+  spinInfra("core-infra", "pa", subscription, true)
 
 }
