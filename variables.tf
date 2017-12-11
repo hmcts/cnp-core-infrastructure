@@ -32,4 +32,4 @@ variable "lb_private_ip_address" {
 }
 
 variable "vmimage_uri" {}
-//variable "pfxPass" {}
+variable "pfxPass" {}
