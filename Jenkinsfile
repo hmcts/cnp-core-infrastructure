@@ -20,6 +20,6 @@ node {
   }
   createwafcert()
 
-  spinInfra("core-infra", "pa", subscription, true)
+  spinInfra("core-infra", "pa", true)
 
 }
