@@ -14,11 +14,7 @@ node {
          branch: 'private-ase'])
   }
 
-  spinInfra() {
-    productName = "core-infra"
-    environment = "pa"
-    planOnly = true
-
+  spinInfra("core-infra", "pa", "nonprod", true) {
     //steps to run before terraform plan and apply
     stage("Pick consul image") {
       env.TF_VAR_vmimage_uri = sh(script: "az image list --resource-group mgmt-vmimg-store-${environment} --query \"[?contains(name,'centos-consul')].{name: name, id: id}\" --output tsv | sort | awk 'END { print \$2 }'",
