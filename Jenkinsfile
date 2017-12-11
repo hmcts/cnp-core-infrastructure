@@ -3,6 +3,7 @@
 @Library('Infrastructure@subscriptionsuffix') _
 
 node {
+  env.PATH = "$env.PATH:/usr/local/bin"
 
   stage('Checkout') {
     deleteDir()
