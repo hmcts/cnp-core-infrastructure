@@ -2,9 +2,21 @@
 //commenting as default brach (whatever is now used on jenkins) should be used now
 @Library('Infrastructure@subscriptionsuffix') _
 
-productName = "core-infra"
-subscription = "nonprod"
-environment = "pa"
+properties([
+    parameters([
+        string(name: 'PRODUCT_NAME', defaultValue: 'core-infra', description: ''),
+        string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Suffix for resources created'),
+        choice(name: 'SUBSCRIPTION', choices: 'nonprod\nprod', description: 'Azure subscriptions available to build in')
+        booleanParam(name: 'PLAN_ONLY', defaultValue: false, description: 'set to true for skipping terraform apply')
+    ])
+])
+
+//running from another Jenkins file:
+//   run(name: 'runname', projectName: 'moj-core-compute', description: '', filter: 'COMPLETED')
+productName = params.PRODUCT_NAME
+subscription = params.SUBSCRIPTION
+environment = params.ENVIRONMENT
+planOnly = params.PLAN_ONLY
 
 node {
   env.PATH = "$env.PATH:/usr/local/bin"
@@ -12,7 +24,7 @@ node {
   stage('Checkout') {
     deleteDir()
     git([url   : 'git@github.com:contino/moj-core-infrastructure.git',
-         branch: 'private-ase'])
+         branch: 'private-ase'])  //TODO: should pick the branch it is running from
   }
 
   withSubscription(subscription) {
@@ -23,8 +35,8 @@ node {
       echo "Picked following vmimage for consul: ${env.TF_VAR_vmimage_uri}"
     }
     createwafcert()
-  }
 
-  spinInfra(productName, environment, true, subscription)
+    spinInfra(productName, environment, planOnly)
+  }
 
 }
