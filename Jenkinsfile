@@ -1,12 +1,12 @@
 #!groovy
 //commenting as default brach (whatever is now used on jenkins) should be used now
-@Library('Infrastructure@subscriptionsuffix') _
+@Library('Infrastructure') _
 
 properties([
     parameters([
         string(name: 'PRODUCT_NAME', defaultValue: 'core-infra', description: ''),
         string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Suffix for resources created'),
-        choice(name: 'SUBSCRIPTION', choices: 'nonprod\nprod', description: 'Azure subscriptions available to build in'),
+        choice(name: 'SUBSCRIPTION', choices: 'nonprod\nprod\nsandbox', description: 'Azure subscriptions available to build in'),
         booleanParam(name: 'PLAN_ONLY', defaultValue: false, description: 'set to true for skipping terraform apply')
     ])
 ])
