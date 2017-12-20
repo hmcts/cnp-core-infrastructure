@@ -36,7 +36,7 @@ node {
     }
     createwafcert()
 
-    spinInfra(productName, subscription, planOnly)
+    spinInfra(productName, environment, planOnly, subscription)
   }
 
 }
