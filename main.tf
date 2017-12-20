@@ -1,5 +1,5 @@
 module "vnet" {
-  source           = "git::git@github.com:contino/moj-module-vnet?ref=private-ase"
+  source           = "git::git@github.com:contino/moj-module-vnet?ref=master"
   name             = "${var.name}"
   location         = "${var.location}"
   address_space    = "${var.address_space}"
@@ -9,7 +9,7 @@ module "vnet" {
 }
 
 module "waf" {
-  source            = "git::git@github.com:contino/moj-module-waf?ref=private-ase"
+  source            = "git::git@github.com:contino/moj-module-waf?ref=master"
   product           = "${var.name}"
   location          = "${var.location}"
   env               = "${var.env}"

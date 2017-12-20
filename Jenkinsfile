@@ -24,7 +24,7 @@ node {
   stage('Checkout') {
     deleteDir()
     git([url   : 'git@github.com:contino/moj-core-infrastructure.git',
-         branch: 'private-ase'])  //TODO: should pick the branch it is running from
+         branch: 'master'])  //TODO: should pick the branch it is running from
   }
 
   withSubscription(subscription) {
