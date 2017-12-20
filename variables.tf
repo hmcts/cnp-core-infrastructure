@@ -7,13 +7,31 @@ variable "location" {
 }
 
 variable "address_space" {
-  default = ["10.0.0.0/16"]
+  default = ["10.98.0.0/15"]
 }
 
 variable "address_prefixes" {
-  default = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  default = ["10.98.0.0/22", "10.98.4.0/22", "10.98.8.0/22", "10.98.12.0/22"]
 }
 
 variable "env" {
   type = "string"
 }
+
+
+
+variable "tenant_id" {}
+
+variable "client_id" {}
+
+variable "subscription_id" {}
+
+variable "secret_access_key" {}
+
+variable "lb_private_ip_address" {
+  default = "10.98.8.4"
+}
+
+variable "vmimage_uri" {}
+variable "pfxPass" {}
+
