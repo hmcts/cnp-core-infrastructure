@@ -11,6 +11,7 @@ properties([
     ])
 ])
 
+
 //running from another Jenkins file:
 //   run(name: 'runname', projectName: 'moj-core-compute', description: '', filter: 'COMPLETED')
 productName = params.PRODUCT_NAME
@@ -40,3 +41,4 @@ node {
   }
 
 }
+

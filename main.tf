@@ -17,6 +17,7 @@ module "waf" {
   subnetname        = "${module.vnet.subnet_names[0]}"
   backendaddress    = "0.0.0.0"
   resourcegroupname = "${module.vnet.resourcegroup_name}"
+
   pfxPass           = "${var.pfxPass}"
 }
 
@@ -35,5 +36,6 @@ module "consul" {
   location                    = "${var.location}"
   cluster_name                = "consul"
   lb_private_ip_address       = "${var.lb_private_ip_address}"
+
 
 }

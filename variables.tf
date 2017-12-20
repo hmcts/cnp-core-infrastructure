@@ -19,6 +19,7 @@ variable "env" {
 }
 
 
+
 variable "tenant_id" {}
 
 variable "client_id" {}
@@ -33,3 +34,4 @@ variable "lb_private_ip_address" {
 
 variable "vmimage_uri" {}
 variable "pfxPass" {}
+
