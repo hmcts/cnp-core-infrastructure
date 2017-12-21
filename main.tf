@@ -5,7 +5,7 @@ module "vnet" {
   address_space    = "${var.address_space}"
   address_prefixes = "${var.address_prefixes}"
   env              = "${var.env}"
-  lb_private_ip_address = "${var.lb_private_ip_address}"
+  #lb_private_ip_address = "${var.lb_private_ip_address}"
 }
 
 module "waf" {
@@ -18,7 +18,7 @@ module "waf" {
   backendaddress    = "0.0.0.0"
   resourcegroupname = "${module.vnet.resourcegroup_name}"
 
-  pfxPass           = "${var.pfxPass}"
+  #pfxPass           = "${var.pfxPass}"
 }
 
 module "consul" {
