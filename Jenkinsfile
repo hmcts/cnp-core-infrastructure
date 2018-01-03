@@ -29,6 +29,14 @@ node {
   }
 
   withSubscription(subscription) {
+
+    TF_VAR_address_space:
+      if prod         -> 10.98.0.0/15
+      else if nonprod -> 10.100.0.0/15
+           else find empty 10.[102,104,106,108,110].0.0/15
+
+    TF_VAR_address_prefixes = ["10.x.0.0/22", "10.x.4.0/22", "10.x.8.0/22", "10.x.12.0/22"]
+
     //steps to run before terraform plan and apply
     stage("Pick consul image") {
       env.TF_VAR_vmimage_uri = sh(script: "az image list --resource-group mgmt-vmimg-store-${env.SUBSCRIPTION_NAME} --query \"[?contains(name,'centos-consul')].{name: name, id: id}\" --output tsv | sort | awk 'END { print \$2 }'",
