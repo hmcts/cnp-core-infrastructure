@@ -6,18 +6,15 @@ variable "location" {
   default = "UK South"
 }
 
-variable "address_space" {
-  default = ["10.100.0.0/15"]
-}
-
-variable "address_prefixes" {
-  default = ["10.100.0.0/22", "10.100.4.0/22", "10.100.8.0/22", "10.100.12.0/22"]
-}
+//variable "address_space" {
+//  default = ["10.100.0.0/15"]
+//}
 
 variable "env" {
   type = "string"
 }
 
+variable "vnetiprange" {}
 
 
 variable "tenant_id" {}
