@@ -7,13 +7,14 @@ variable "location" {
 }
 
 variable "address_space" {
-//  default = ["10.100.0.0/15"]
+  default = ["10.100.0.0/15"]
 }
 
 variable "env" {
   type = "string"
 }
 
+variable "vnetiprange" {}
 
 
 variable "tenant_id" {}

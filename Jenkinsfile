@@ -12,6 +12,7 @@ properties([
     ])
 ])
 
+
 //running from another Jenkins file:
 //   run(name: 'runname', projectName: 'moj-core-compute', description: '', filter: 'COMPLETED')
 productName = params.PRODUCT_NAME
@@ -24,7 +25,7 @@ node {
 
   stage('Checkout') {
     deleteDir()
-    git([url: 'git@github.com:contino/moj-core-infrastructure.git'])
+    git([url   : 'git@github.com:contino/moj-core-infrastructure.git'])
   }
 
   withSubscription(subscription) {
@@ -34,7 +35,6 @@ node {
           returnStdout: true).trim()
       echo "Picked following vmimage for consul: ${env.TF_VAR_vmimage_uri}"
     }
-    //create WAF certificate
     createwafcert()
 
     spinInfra(productName, environment, planOnly, subscription)
