@@ -3,7 +3,7 @@ module "vnet" {
   name             = "${var.name}"
   location         = "${var.location}"
   address_space    = ["${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}"]
-  source_range     = "${var.vnetiprange}"
+  source_range     = "${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}"
   env              = "${var.env}"
   #lb_private_ip_address = "${var.lb_private_ip_address}"
 }
