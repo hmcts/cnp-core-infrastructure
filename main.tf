@@ -2,11 +2,12 @@ module "vnet" {
   source           = "git::git@github.com:contino/moj-module-vnet?ref=dynamic_subnet"
   name             = "${var.name}"
   location         = "${var.location}"
-  address_space    = ["${var.vnetiprange}"]
+  address_space    = ["${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}"]
   source_range     = "${var.vnetiprange}"
   env              = "${var.env}"
   #lb_private_ip_address = "${var.lb_private_ip_address}"
 }
+${cidrsubnet("${var.source_range}", 7, count.index)}
 
 module "waf" {
   source            = "git::git@github.com:contino/moj-module-waf?ref=master"
