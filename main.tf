@@ -1,11 +1,9 @@
 module "vnet" {
-  source           = "git::git@github.com:contino/moj-module-vnet?ref=dynamic_subnet"
+  source           = "git::git@github.com:contino/moj-module-vnet?ref=master"
   name             = "${var.name}"
   location         = "${var.location}"
   address_space    = ["${var.vnetiprange}"]
   source_range     = "${var.vnetiprange}"
- // address_prefixes = ["${cidrsubnet("${var.vnetiprange}", 7, 0)}","${cidrsubnet("${var.vnetiprange}", 7, 1)}","${cidrsubnet("${var.vnetiprange}", 7, 2)}","${cidrsubnet("${var.vnetiprange}", 7, 3)}"]
- // address_prefixes = ["${cidrsubnet("${module.vnet.address_space}", 7, 0)}","${cidrsubnet("${module.vnet.address_space}", 7, 1)}","${cidrsubnet("${module.vnet.address_space}", 7, 2)}","${cidrsubnet("${module.vnet.address_space}", 7, 3)}"]
   env              = "${var.env}"
   #lb_private_ip_address = "${var.lb_private_ip_address}"
 }
