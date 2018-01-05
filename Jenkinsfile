@@ -25,9 +25,9 @@ node {
 
   stage('Checkout') {
     deleteDir()
-    git([url   : 'git@github.com:contino/moj-core-infrastructure.git'])
+    git([url   : 'git@github.com:contino/moj-core-infrastructure.git',
+         branch: env.BRANCH_NAME])
   }
-
   withSubscription(subscription) {
     //steps to run before terraform plan and apply
     stage("Pick consul image") {
