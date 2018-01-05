@@ -5,7 +5,6 @@ module "vnet" {
   address_space    = ["${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}"]
   source_range     = "${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}"
   env              = "${var.env}"
-  #lb_private_ip_address = "${var.lb_private_ip_address}"
 }
 
 module "waf" {
@@ -17,8 +16,6 @@ module "waf" {
   subnetname        = "${module.vnet.subnet_names[0]}"
   backendaddress    = "0.0.0.0"
   resourcegroupname = "${module.vnet.resourcegroup_name}"
-
-  #pfxPass           = "${var.pfxPass}"
 }
 
 module "consul" {
