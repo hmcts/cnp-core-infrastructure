@@ -1,5 +1,5 @@
 module "vnet" {
-  source           = "git::git@github.com:contino/moj-module-vnet?ref=master"
+  source           = "git::git@github.com:contino/moj-module-vnet?ref=dynamic_subnet"
   name             = "${var.name}"
   location         = "${var.location}"
   address_space    = ["${var.vnetiprange}"]
