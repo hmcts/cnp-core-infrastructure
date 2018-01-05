@@ -25,4 +25,3 @@ output "resourcegroup_id" {
 output "resourcegroup_name" {
   value = "${module.vnet.resourcegroup_name}"
 }
-
