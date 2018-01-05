@@ -7,7 +7,6 @@ module "vnet" {
   env              = "${var.env}"
   #lb_private_ip_address = "${var.lb_private_ip_address}"
 }
-${cidrsubnet("${var.source_range}", 7, count.index)}
 
 module "waf" {
   source            = "git::git@github.com:contino/moj-module-waf?ref=master"
