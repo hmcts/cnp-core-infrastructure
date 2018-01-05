@@ -2,8 +2,8 @@ module "vnet" {
   source           = "git::git@github.com:contino/moj-module-vnet?ref=master"
   name             = "${var.name}"
   location         = "${var.location}"
-  address_space    = ["${var.vnetiprange}"]
-  address_prefixes = ["${cidrsubnet("${var.vnetiprange}", 7, 0)}","${cidrsubnet("${var.vnetiprange}", 7, 1)}","${cidrsubnet("${var.vnetiprange}", 7, 2)}","${cidrsubnet("${var.vnetiprange}", 7, 3)}"]
+  address_space    = "${var.address_space}"
+  address_prefixes = "${var.address_prefixes}"
   env              = "${var.env}"
   #lb_private_ip_address = "${var.lb_private_ip_address}"
 }
