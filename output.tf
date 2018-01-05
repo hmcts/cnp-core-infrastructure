@@ -26,6 +26,3 @@ output "resourcegroup_name" {
   value = "${module.vnet.resourcegroup_name}"
 }
 
-output "vnetip" {
-  value = "${module.vnet.address_space}"
-}
