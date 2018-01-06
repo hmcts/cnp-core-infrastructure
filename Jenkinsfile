@@ -1,6 +1,6 @@
 #!groovy
 //commenting as default brach (whatever is now used on jenkins) should be used now
-@Library('Infrastructure') _
+@Library('Infrastructure@cnp-dynamic_subnet') _
 
 properties([
     parameters([
@@ -23,11 +23,8 @@ planOnly = params.PLAN_ONLY
 node {
   env.PATH = "$env.PATH:/usr/local/bin"
 
-  stage('Checkout') {
-    deleteDir()
-    git([url   : 'git@github.com:contino/moj-core-infrastructure.git',
-         branch: env.BRANCH_NAME])
-  }
+  stage-checkout('git@github.com:contino/moj-core-infrastructure.git')
+
   withSubscription(subscription) {
     //steps to run before terraform plan and apply
     stage("Pick consul image") {
