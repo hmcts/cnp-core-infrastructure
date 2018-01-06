@@ -1,6 +1,6 @@
 #!groovy
 //commenting as default brach (whatever is now used on jenkins) should be used now
-@Library('Infrastructure@cnp-dynamic_subnet') _
+@Library('Infrastructure@cnp-dynamic-subnet') _
 
 properties([
     parameters([
