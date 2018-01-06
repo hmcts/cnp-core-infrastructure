@@ -23,7 +23,7 @@ planOnly = params.PLAN_ONLY
 node {
   env.PATH = "$env.PATH:/usr/local/bin"
 
-  stage-checkout('git@github.com:contino/moj-core-infrastructure.git')
+  stageCheckout('git@github.com:contino/moj-core-infrastructure.git')
 
   withSubscription(subscription) {
     env.TF_VAR_netnum = params.NETNUM
