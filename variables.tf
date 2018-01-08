@@ -6,9 +6,7 @@ variable "location" {
   default = "UK South"
 }
 
-variable "address_space" {
-  default = ["10.100.0.0/15"]
-}
+variable "address_space" {}
 
 variable "env" {
   type = "string"
@@ -25,9 +23,7 @@ variable "subscription_id" {}
 
 variable "secret_access_key" {}
 
-variable "lb_private_ip_address" {
-  default = "10.100.8.4"
-}
+variable "lb_private_ip_address" {}
 
 variable "vmimage_uri" {}
 #variable "pfxPass" {}
