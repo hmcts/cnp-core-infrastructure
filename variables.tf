@@ -21,8 +21,6 @@ variable "subscription_id" {}
 
 variable "secret_access_key" {}
 
-variable "lb_private_ip_address" {}
-
 variable "vmimage_uri" {}
 #variable "pfxPass" {}
 
