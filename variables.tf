@@ -6,8 +6,6 @@ variable "location" {
   default = "UK South"
 }
 
-variable "address_space" {}
-
 variable "env" {
   type = "string"
 }
