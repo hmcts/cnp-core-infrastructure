@@ -32,5 +32,5 @@ module "consul" {
   image_uri                   = "${var.vmimage_uri}"
   location                    = "${var.location}"
   cluster_name                = "consul"
-  lb_private_ip_address       = "${cidrhost("${cidrsubnet("${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}", 7, 2)}", -1)}"
+  lb_private_ip_address       = "${cidrhost("${cidrsubnet("${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}", 7, 2)}", -2)}"
 }
