@@ -1,6 +1,6 @@
 #!groovy
 //commenting as default brach (whatever is now used on jenkins) should be used now
-@Library('Infrastructure@cnp-dynamic-subnet') _
+@Library('pipeline') _
 
 properties([
     parameters([
@@ -36,6 +36,10 @@ node {
     createwafcert()
 
     spinInfra(productName, environment, planOnly, subscription)
+
+    if (env.SUBSCRIPTION_NAME=='sandbox' ||
+        env.SUBSCRIPTION_NAME=='prod')
+    peerVnets("mgmt-infra-${env.SUBSCRIPTION_NAME}", env.AZURE_SUBSCRIPTION_ID, environment, env.AZURE_SUBSCRIPTION_ID)
   }
 
 }
