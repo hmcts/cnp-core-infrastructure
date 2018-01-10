@@ -18,8 +18,6 @@ variable "env" {
   type = "string"
 }
 
-
-
 variable "tenant_id" {}
 
 variable "client_id" {}

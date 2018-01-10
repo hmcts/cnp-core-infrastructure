@@ -1,11 +1,11 @@
 module "vnet" {
-  source           = "git::git@github.com:contino/moj-module-vnet?ref=master"
-  name             = "${var.name}"
-  location         = "${var.location}"
-  address_space    = "${var.address_space}"
-  address_prefixes = "${var.address_prefixes}"
-  env              = "${var.env}"
-  #lb_private_ip_address = "${var.lb_private_ip_address}"
+  source                = "git::git@github.com:contino/moj-module-vnet?ref=master"
+  name                  = "${var.name}"
+  location              = "${var.location}"
+  address_space         = "${var.address_space}"
+  address_prefixes      = "${var.address_prefixes}"
+  env                   = "${var.env}"
+  lb_private_ip_address = "${var.lb_private_ip_address}"
 }
 
 module "waf" {
