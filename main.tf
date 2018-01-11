@@ -2,7 +2,7 @@ module "vnet" {
   source                = "git::git@github.com:contino/moj-module-vnet?ref=dynamic_subnet"
   name                  = "${var.name}"
   location              = "${var.location}"
-  address_space         = ["${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}"]
+  address_space         = "${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}"
   source_range          = "${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}"
   env                   = "${var.env}"
   lb_private_ip_address = "${cidrhost("${cidrsubnet("${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}", 7, 2)}", -2)}"
