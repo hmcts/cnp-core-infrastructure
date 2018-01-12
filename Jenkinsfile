@@ -1,12 +1,13 @@
 #!groovy
 //commenting as default brach (whatever is now used on jenkins) should be used now
-@Library('Infrastructure') _
+@Library('pipeline') _
 
 properties([
     parameters([
         string(name: 'PRODUCT_NAME', defaultValue: 'core-infra', description: ''),
         string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'Suffix for resources created'),
         choice(name: 'SUBSCRIPTION', choices: 'nonprod\nprod\nsandbox', description: 'Azure subscriptions available to build in'),
+        string(name: 'NETNUM', defaultValue: '', description: ''),
         booleanParam(name: 'PLAN_ONLY', defaultValue: false, description: 'set to true for skipping terraform apply')
     ])
 ])
@@ -22,13 +23,10 @@ planOnly = params.PLAN_ONLY
 node {
   env.PATH = "$env.PATH:/usr/local/bin"
 
-  stage('Checkout') {
-    deleteDir()
-    git([url   : 'git@github.com:contino/moj-core-infrastructure.git',
-         branch: 'master'])  //TODO: should pick the branch it is running from
-  }
+  stageCheckout('git@github.com:contino/moj-core-infrastructure.git')
 
   withSubscription(subscription) {
+    env.TF_VAR_netnum = params.NETNUM
     //steps to run before terraform plan and apply
     stage("Pick consul image") {
       env.TF_VAR_vmimage_uri = sh(script: "az image list --resource-group mgmt-vmimg-store-${env.SUBSCRIPTION_NAME} --query \"[?contains(name,'centos-consul')].{name: name, id: id}\" --output tsv | sort | awk 'END { print \$2 }'",
@@ -38,6 +36,8 @@ node {
     createwafcert()
 
     spinInfra(productName, environment, planOnly, subscription)
+
+    peerVnets("mgmt-infra-${env.SUBSCRIPTION_NAME}", env.AZURE_SUBSCRIPTION_ID, environment, env.AZURE_SUBSCRIPTION_ID)
   }
 
 }
