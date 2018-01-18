@@ -1,6 +1,6 @@
 #!groovy
 //commenting as default brach (whatever is now used on jenkins) should be used now
-@Library('pipeline') _
+@Library('Infrastructure@infra-pipeline') _
 
 properties([
     parameters([
