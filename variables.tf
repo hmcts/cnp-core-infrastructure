@@ -10,9 +10,6 @@ variable "env" {
   type = "string"
 }
 
-variable "vnetiprange" {}
-
-
 variable "tenant_id" {}
 
 variable "client_id" {}
@@ -22,7 +19,8 @@ variable "subscription_id" {}
 variable "secret_access_key" {}
 
 variable "vmimage_uri" {}
-#variable "pfxPass" {}
 
 variable "netnum" {}
+
+variable "root_address_space" {}
 
