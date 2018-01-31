@@ -5,7 +5,7 @@ module "vnet" {
   address_space         = "${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}"
   source_range          = "${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}"
   env                   = "${var.env}"
-  lb_private_ip_address = "${cidrhost("${cidrsubnet("${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}", 7, 2)}", -2)}"
+  lb_private_ip_address = "${cidrhost("${cidrsubnet("${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}", 4, 2)}", -2)}"
 }
 
 module "waf" {
@@ -33,5 +33,5 @@ module "consul" {
   image_uri                   = "${var.vmimage_uri}"
   location                    = "${var.location}"
   cluster_name                = "consul"
-  lb_private_ip_address       = "${cidrhost("${cidrsubnet("${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}", 7, 2)}", -2)}"
+  lb_private_ip_address       = "${cidrhost("${cidrsubnet("${cidrsubnet("${var.vnetiprange}", 3, "${var.netnum}")}", 4, 2)}", -2)}"
 }
