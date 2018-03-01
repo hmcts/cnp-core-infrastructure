@@ -23,7 +23,7 @@ node {
   stageCheckout('git@github.com:contino/moj-core-infrastructure.git')
 
   withSubscription(subscription) {
-    env.TF_VAR_netnum = findFreeSubnet(params.SUBSCRIPTION, params.ENVIRONMENT)
+    env.TF_VAR_netnum = findFreeSubnet(params.SUBSCRIPTION, params.ENVIRONMENT)[1]
     //steps to run before terraform plan and apply
     stage("Pick consul image") {
       env.TF_VAR_vmimage_uri = az "image list --resource-group mgmt-vmimg-store-${env.SUBSCRIPTION_NAME} --query \"[?contains(name,'centos-consul')].{name: name, id: id}\" --output tsv | sort | awk 'END { print \$2 }'"
