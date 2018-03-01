@@ -23,10 +23,10 @@ node {
   stageCheckout('git@github.com:contino/moj-core-infrastructure.git')
 
   withSubscription(subscription) {
-    env.TF_VAR_netnum = findFreeSubnet(params.SUBSCRIPTION)
+    env.TF_VAR_netnum = findFreeSubnet(params.SUBSCRIPTION, params.ENVIRONMENT)
     //steps to run before terraform plan and apply
     stage("Pick consul image") {
-      env.TF_VAR_vmimage_uri = az "az image list --resource-group mgmt-vmimg-store-${env.SUBSCRIPTION_NAME} --query \"[?contains(name,'centos-consul')].{name: name, id: id}\" --output tsv | sort | awk 'END { print \$2 }'"
+      env.TF_VAR_vmimage_uri = az "image list --resource-group mgmt-vmimg-store-${env.SUBSCRIPTION_NAME} --query \"[?contains(name,'centos-consul')].{name: name, id: id}\" --output tsv | sort | awk 'END { print \$2 }'"
       echo "Picked following vmimage for consul: ${env.TF_VAR_vmimage_uri}"
     }
     createwafcert()
