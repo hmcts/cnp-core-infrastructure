@@ -1,5 +1,5 @@
 #!groovy
-@Library('Infrastructure@fix-az-race-condition') _
+@Library('Infrastructure') _
 
 properties([
     parameters([
