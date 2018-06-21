@@ -44,3 +44,10 @@ module "consul" {
   cluster_name                = "consul"
   lb_private_ip_address       = "${cidrhost("${cidrsubnet("${cidrsubnet("${var.root_address_space}", 6, "${var.netnum}")}", 4, 2)}", -2)}"
 }
+
+module "api-mgmt" {
+  source       = "git@github.com:hmcts/moj-module-api-mgmt?ref=master"
+  location     = "${var.location}"
+  env          = "${var.env}"
+  subscription = "${var.subscription}"
+}
