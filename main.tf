@@ -50,4 +50,5 @@ module "api-mgmt" {
   location     = "${var.location}"
   env          = "${var.env}"
   subscription = "${var.subscription}"
+  source_range = "${cidrsubnet("${var.root_address_space}", 6, "${var.netnum}")}"
 }
