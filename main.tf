@@ -46,9 +46,12 @@ module "consul" {
 }
 
 module "api-mgmt" {
-  source       = "git@github.com:hmcts/moj-module-api-mgmt?ref=master"
-  location     = "${var.location}"
-  env          = "${var.env}"
-  subscription = "${var.subscription}"
-  source_range = "${cidrsubnet("${var.root_address_space}", 6, "${var.netnum}")}"
+  source             = "git@github.com:hmcts/moj-module-api-mgmt?ref=master"
+  location           = "${var.location}"
+  env                = "${var.env}"
+  subscription       = "${var.subscription}"
+  vnet_rg_name       = "${module.vnet.resourcegroup_name}"
+  vnet_name          = "${module.vnet.vnetname}"
+  source_range       = "${cidrsubnet("${var.root_address_space}", 6, "${var.netnum}")}"
+  source_range_index = "${length(module.vnet.subnet_ids)}"
 }
