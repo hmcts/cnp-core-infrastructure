@@ -18,7 +18,7 @@ module "vnet" {
 }
 
 module "waf" {
-  source            = "git::git@github.com:contino/moj-module-waf?ref=fixing-minProtocolVersion"
+  source            = "git::git@github.com:contino/moj-module-waf?ref=master"
   product           = "${var.name}"
   location          = "${var.location}"
   env               = "${var.env}"
