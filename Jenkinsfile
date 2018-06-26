@@ -29,8 +29,8 @@ node {
 
       // Looks for the latest image marked with release tag
       // env.TF_VAR_vmimage_uri = az "image list --resource-group mgmt-vmimg-store-${env.SUBSCRIPTION_NAME} --query \"[*].{name:name, id:id, release:tags.version}\" -o tsv | grep moj-centos-consul | grep release | sort | awk 'END { print \$2 }'"
-      env.TF_VAR_vmimage_uri = az "image list --resource-group mgmt-vmimg-store-${env.SUBSCRIPTION_NAME} --query \"[?contains(name,'moj-centos-consul')].{name:name, id:id, release:tags.version}\" -output tsv | grep -i release | sort | awk 'END { print \$2 }'"
-      echo "First run - ${env.TF_VAR_vmimage_uri}"
+      env.TF_VAR_vmimage_uri = az "image list --resource-group mgmt-vmimg-store-${env.SUBSCRIPTION_NAME} --query \"[?contains(name,'moj-centos-consul')].{name:name, id:id, release:tags.version}\" --output tsv | grep -i release | sort | awk 'END { print \$2 }'"
+      echo "First run - ${env.TF_VAR_vmimage_uri}X"
       // If no image can be found, deafults to the latest image available.
       if (env.TF_VAR_vmimage_uri.matches('centos-consul'))
       {
