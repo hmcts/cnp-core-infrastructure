@@ -28,12 +28,13 @@ node {
     stage("Pick consul image") {
 
       // Looks for the latest image marked with release tag
-      env.TF_VAR_vmimage_uri = az "image list --resource-group mgmt-vmimg-store-${env.SUBSCRIPTION_NAME} --query \"[*].{name:name, id:id, release:tags.version}\" -o tsv | grep moj-centos-consul | grep release | sort | awk 'END { print \$2 }'"
+      env.TF_VAR_vmimage_uri = az "image list --resource-group mgmt-vmimg-store-${env.SUBSCRIPTION_NAME} --query \"[\*].{name:name, id:id, release:tags.version}\" -o tsv | grep moj-centos-consul | grep release | sort | awk 'END { print \$2 }'"
       
       // If no image can be found, deafults to the latest image available.
       if (env.TF_VAR_vmimage_uri.isempty())
       {
       env.TF_VAR_vmimage_uri = az "image list --resource-group mgmt-vmimg-store-${env.SUBSCRIPTION_NAME} --query \"[?contains(name,'centos-consul')].{name: name, id: id}\" --output tsv | sort | awk 'END { print \$2 }'"
+      echo "Didn't find a tagged release, picked the latest image for consul: ${env.TF_VAR_vmimage_uri}"
       }
 
       echo "Picked following vmimage for consul: ${env.TF_VAR_vmimage_uri}"
