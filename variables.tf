@@ -14,6 +14,8 @@ variable "tenant_id" {}
 
 variable "client_id" {}
 
+variable "subscription" {}
+
 variable "subscription_id" {}
 
 variable "secret_access_key" {}
@@ -23,4 +25,3 @@ variable "vmimage_uri" {}
 variable "netnum" {}
 
 variable "root_address_space" {}
-
