@@ -52,6 +52,6 @@ module "api-mgmt" {
   subscription       = "${var.subscription}"
   vnet_rg_name       = "${module.vnet.resourcegroup_name}"
   vnet_name          = "${module.vnet.vnetname}"
-  source_range       = "${cidrsubnet("${var.root_address_space}", 6, "${var.netnum}")}"
+  source_range       = "${cidrsubnet("${var.root_address_space}", 4, 5)}"
   source_range_index = "${length(module.vnet.subnet_ids)}"
 }
