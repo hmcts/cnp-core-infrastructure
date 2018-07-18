@@ -20,7 +20,10 @@ node {
   env.PATH = "$env.PATH:/usr/local/bin"
   def az = { cmd -> return sh(script: "env AZURE_CONFIG_DIR=/opt/jenkins/.azure-$subscription az $cmd", returnStdout: true).trim() }
 
-  stageCheckout('git@github.com:contino/moj-core-infrastructure.git')
+  stage('Checkout') {
+    deleteDir()
+    checkout scm
+  }
 
   withSubscription(subscription) {
     env.TF_VAR_netnum = findFreeSubnet(params.SUBSCRIPTION, params.ENVIRONMENT)[1]
