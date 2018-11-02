@@ -29,7 +29,7 @@ module "waf" {
 }
 
 module "consul" {
-  source                      = "git::git@github.com:contino/moj-module-consul?ref=master"
+  source                      = "git::git@github.com:contino/moj-module-consul?ref=0.1.6"
   subscription_id             = "${var.subscription_id}"
   tenant_id                   = "${var.tenant_id}"
   client_id                   = "${var.client_id}"
