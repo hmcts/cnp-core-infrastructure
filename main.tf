@@ -47,7 +47,7 @@ module "consul" {
 
 module "api-mgmt" {
   #source             = "git@github.com:hmcts/moj-module-api-mgmt?ref=master"
-  source             = "git@github.com:hmcts/cnp-module-api-mgmt?ref=0.10"
+  source             = "git@github.com:hmcts/cnp-module-api-mgmt?ref=0.1.0"
   location           = "${var.location}"
   env                = "${var.env}"
   subscription       = "${var.subscription}"
