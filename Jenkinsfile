@@ -46,8 +46,9 @@ node {
     createwafcert()
 
     spinInfra(productName, environment, planOnly, subscription)
-
-    peerVnets("mgmt-infra-${env.SUBSCRIPTION_NAME}", env.AZURE_SUBSCRIPTION_ID, environment, env.AZURE_SUBSCRIPTION_ID)
+    if (!planOnly) {
+      peerVnets("mgmt-infra-${env.SUBSCRIPTION_NAME}", env.AZURE_SUBSCRIPTION_ID, environment, env.AZURE_SUBSCRIPTION_ID)
+    }
   }
 }
 
