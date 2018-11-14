@@ -31,7 +31,7 @@ module "waf" {
 
 data "azurerm_image" "consul" {
   resource_group_name = "cnp-vmimages-${var.subscription}"
-  name_regex = "moj-centos-consul-0.1.6"
+  name_regex = "moj-centos-consul-0.1.7"
   sort_descending = true
 }
 
