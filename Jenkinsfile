@@ -1,7 +1,7 @@
 #!groovy
-//@Library('Infrastructure') _
+@Library('Infrastructure@cnp-1186') _
 
-@Library('Infrastructure@cnp-1186') 
+//@Library('Infrastructure@cnp-1186') 
 properties([
     parameters([
         string(name: 'PRODUCT_NAME', defaultValue: 'core-infra', description: ''),
