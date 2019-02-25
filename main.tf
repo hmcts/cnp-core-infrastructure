@@ -18,7 +18,7 @@ module "vnet" {
 }
 
 module "waf" {
-  source            = "git::git@github.com:contino/moj-module-waf?ref=master"
+  source            = "git::git@github.com:contino/moj-module-waf?ref=228c54a26e26ecc2b58ae536affe072952e1d69d"
   product           = "${var.name}"
   location          = "${var.location}"
   env               = "${var.env}"
