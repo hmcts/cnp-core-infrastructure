@@ -1,5 +1,6 @@
 #!groovy
-@Library('Infrastructure@master') _
+@Library('Infrastructure@cnp-1186') _
+
 
 properties([
     parameters([
