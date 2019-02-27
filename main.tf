@@ -49,6 +49,7 @@ module "consul" {
   image_uri                   = "${data.azurerm_image.consul.id}"
   location                    = "${var.location}"
   cluster_name                = "consul"
+  instance_size               = "Standard_A2_v2"
   lb_private_ip_address       = "${cidrhost("${cidrsubnet("${cidrsubnet("${var.root_address_space}", 6, "${var.netnum}")}", 4, 2)}", -2)}"
 }
 
