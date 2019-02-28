@@ -1,1 +1,1 @@
-address_space="10.112.0.0/12"
+address_space="10.112.0.0/18"
