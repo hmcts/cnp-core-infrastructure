@@ -22,4 +22,5 @@ variable "secret_access_key" {}
 
 variable "netnum" {}
 
-variable "root_address_space" {}
+//variable "root_address_space" {}
+variable "address_space" {}

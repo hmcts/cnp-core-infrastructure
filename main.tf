@@ -11,10 +11,10 @@ module "vnet" {
   source                = "git::git@github.com:contino/moj-module-vnet?ref=master"
   name                  = "${var.name}"
   location              = "${var.location}"
-  address_space         = "${cidrsubnet("${var.root_address_space}", 6, "${var.netnum}")}"
-  source_range          = "${cidrsubnet("${var.root_address_space}", 6, "${var.netnum}")}"
+  address_space         = "${var.address_space}"
+  source_range          = "${var.address_space}"
   env                   = "${var.env}"
-  lb_private_ip_address = "${cidrhost("${cidrsubnet("${cidrsubnet("${var.root_address_space}", 6, "${var.netnum}")}", 4, 2)}", -2)}"
+  lb_private_ip_address = "${cidrhost("${cidrsubnet("${var.address_space}", 4, 2)}", -2)}"
 }
 
 module "waf" {

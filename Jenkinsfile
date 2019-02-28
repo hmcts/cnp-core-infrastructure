@@ -1,5 +1,5 @@
 #!groovy
-@Library('Infrastructure@cnp-1186') _
+@Library('Infrastructure@master') _
 
 
 properties([
@@ -27,14 +27,14 @@ node {
   }
 
   withSubscription(subscription) {
-    env.TF_VAR_netnum = findFreeSubnet(params.SUBSCRIPTION, params.ENVIRONMENT)[1]
+    //env.TF_VAR_netnum = findFreeSubnet(params.SUBSCRIPTION, params.ENVIRONMENT)[1]
     //steps to run before terraform plan and apply
     
     createwafcert()
 
     spinInfra(productName, environment, planOnly, subscription)
     if (!planOnly) {
-      peerVnets("mgmt-infra-${env.SUBSCRIPTION_NAME}", env.AZURE_SUBSCRIPTION_ID, environment, env.AZURE_SUBSCRIPTION_ID)
+      //peerVnets("mgmt-infra-${env.SUBSCRIPTION_NAME}", env.AZURE_SUBSCRIPTION_ID, environment, env.AZURE_SUBSCRIPTION_ID)
     }
   }
 }
