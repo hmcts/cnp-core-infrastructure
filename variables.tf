@@ -20,7 +20,7 @@ variable "subscription_id" {}
 
 variable "secret_access_key" {}
 
-variable "netnum" {}
+//variable "netnum" {}
 
 //variable "root_address_space" {}
 variable "address_space" {}
