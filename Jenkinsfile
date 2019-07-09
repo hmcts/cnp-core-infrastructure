@@ -6,7 +6,7 @@ properties([
     parameters([
         string(name: 'PRODUCT_NAME', defaultValue: 'core-infra', description: ''),
         string(name: 'ENVIRONMENT', defaultValue: 'ithc', description: 'Suffix for resources created'),
-        choice(name: 'SUBSCRIPTION', choices: 'qa\nnonprod\nprod\nsandbox\nhmctsdemo', description: 'Azure subscriptions available to build in'),
+        choice(name: 'SUBSCRIPTION', choices: 'qa\nnonprod\nprod\nsandbox\nhmctsdemo\nethosldata', description: 'Azure subscriptions available to build in'),
         booleanParam(name: 'PLAN_ONLY', defaultValue: false, description: 'set to true for skipping terraform apply')
     ])
 ])
