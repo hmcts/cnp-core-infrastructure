@@ -10,14 +10,6 @@ variable "env" {
   type = "string"
 }
 
-variable "tenant_id" {}
-
-variable "client_id" {}
-
 variable "subscription" {}
-
-variable "subscription_id" {}
-
-variable "secret_access_key" {}
 
 variable "address_space" {}
