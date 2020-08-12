@@ -1,12 +1,3 @@
-resource "azurerm_resource_group" "asprg" {
-  name     = "mgmt-asp-${var.env}"
-  location = "${var.location}"
-
-  tags {
-    environment = "${var.env}"
-  }
-}
-
 module "vnet" {
   source                = "git::git@github.com:hmcts/cnp-module-vnet?ref=master"
   name                  = "${var.name}"
