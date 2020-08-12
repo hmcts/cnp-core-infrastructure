@@ -19,6 +19,7 @@ planOnly = params.PLAN_ONLY
 
 node {
   env.PATH = "$env.PATH:/usr/local/bin"
+  env.GIT_URL = "https://github.com/hmcts/cnp-core-infrastructure"
   def az = { cmd -> return sh(script: "env AZURE_CONFIG_DIR=/opt/jenkins/.azure-$subscription az $cmd", returnStdout: true).trim() }
 
   stage('Checkout') {
