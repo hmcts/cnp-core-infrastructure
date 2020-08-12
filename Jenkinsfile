@@ -29,8 +29,6 @@ node {
   withSubscription(subscription) {
     //env.TF_VAR_netnum = findFreeSubnet(params.SUBSCRIPTION, params.ENVIRONMENT)[1]
     //steps to run before terraform plan and apply
-    
-    createwafcert()
 
     spinInfra(productName, environment, planOnly, subscription)
     if (!planOnly) {
