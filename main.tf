@@ -1,3 +1,17 @@
+# Temp
+resource "azurerm_resource_group" "asprg" {
+  name     = "mgmt-asp-${var.env}"
+  location = "${var.location}"
+
+  tags {
+    environment = "${var.env}"
+  }
+
+  providers                   = {
+    azurerm = "azurerm.previous"
+  }
+}
+
 resource "azurerm_subnet" "api-mgmt-subnet" {
   name                 = "core-infra-subnet-apimgmt-${var.env}"
   resource_group_name  = "${module.vnet.resourcegroup_name}"
@@ -19,12 +33,14 @@ module "vnet" {
   lb_private_ip_address = "${cidrhost("${cidrsubnet("${var.address_space}", 4, 2)}", -2)}"
 }
 
+# Temp
 data "azurerm_image" "consul" {
   resource_group_name = "cnp-vmimages-${var.subscription}"
   name_regex = "moj-centos-consul-0.1.7"
   sort_descending = true
 }
 
+# Temp
 module "consul" {
   source                      = "git::git@github.com:hmcts/cnp-module-consul?ref=consul-fix"
   subscription_id             = "${var.subscription_id}"
@@ -43,7 +59,7 @@ module "consul" {
   lb_private_ip_address       = "${cidrhost("${cidrsubnet("${var.address_space}", 4, 2)}", -2)}"
 
   providers                   = {
-    azurerm = "azurerm.consul"
+    azurerm = "azurerm.previous"
   }
 }
 
@@ -53,4 +69,8 @@ module "api-mgmt" {
   api_subnet_id      = "${azurerm_subnet.api-mgmt-subnet.id}"
   env                = "${var.env}"
   vnet_rg_name       = "${module.vnet.resourcegroup_name}"
+
+  providers                   = {
+    azurerm = "azurerm.previous"
+  }
 }

@@ -4,5 +4,5 @@ provider "azurerm" {
 }
 
 provider "azurerm" {
-  alias = "consul"
+  alias = "previous"
 }
