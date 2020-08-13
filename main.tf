@@ -1,3 +1,14 @@
+resource "azurerm_subnet" "api-mgmt-subnet" {
+  name                 = "core-infra-subnet-apimgmt-${var.env}"
+  resource_group_name  = "${module.vnet.resourcegroup_name}"
+  virtual_network_name = "${module.vnet.vnetname}"
+  address_prefixes     = "${cidrsubnet("${var.address_space}", 4, length(module.vnet.subnet_ids))}"
+
+  lifecycle {
+    ignore_changes = [address_prefixes]
+  }
+}
+
 module "vnet" {
   source                = "git::git@github.com:hmcts/cnp-module-vnet?ref=fix-address-prefix"
   name                  = "${var.name}"
@@ -11,10 +22,7 @@ module "vnet" {
 module "api-mgmt" {
   source             = "git@github.com:hmcts/cnp-module-api-mgmt?ref=master"
   location           = "${var.location}"
+  api_subnet_id      = "${azurerm_subnet.api-mgmt-subnet.id}"
   env                = "${var.env}"
-  subscription       = "${var.subscription}"
   vnet_rg_name       = "${module.vnet.resourcegroup_name}"
-  vnet_name          = "${module.vnet.vnetname}"
-  source_range       = "${var.address_space}"
-  source_range_index = "${length(module.vnet.subnet_ids)}"
 }
