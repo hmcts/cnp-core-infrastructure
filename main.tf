@@ -1,15 +1,5 @@
-# Temp
-resource "azurerm_resource_group" "asprg" {
-  name      = "mgmt-asp-${var.env}"
-  location  = "${var.location}"
-
-  tags      = {
-    environment = "${var.env}"
-  }
-}
-
 module "vnet" {
-  source                = "git::git@github.com:hmcts/cnp-module-vnet?ref=fix-address-prefix"
+  source                = "git::git@github.com:hmcts/cnp-module-vnet?ref=master"
   name                  = "${var.name}"
   location              = "${var.location}"
   address_space         = "${var.address_space}"
@@ -27,7 +17,7 @@ data "azurerm_image" "consul" {
 
 # Temp
 module "consul" {
-  source                      = "git::git@github.com:hmcts/cnp-module-consul?ref=consul-fix"
+  source                      = "git::git@github.com:hmcts/cnp-module-consul?ref=0.1.7"
   subscription_id             = "${var.subscription_id}"
   tenant_id                   = "${var.tenant_id}"
   client_id                   = "${var.client_id}"
@@ -42,14 +32,10 @@ module "consul" {
   cluster_name                = "consul"
   instance_size               = "Standard_A2_v2"
   lb_private_ip_address       = "${cidrhost("${cidrsubnet("${var.address_space}", 4, 2)}", -2)}"
-
-  providers                   = {
-    azurerm = "azurerm.previous"
-  }
 }
 
 module "api-mgmt" {
-  source             = "git@github.com:hmcts/cnp-module-api-mgmt?ref=updated-for-core-infra"
+  source             = "git@github.com:hmcts/cnp-module-api-mgmt?ref=0.1.0"
   location           = "${var.location}"
   env                = "${var.env}"
   subscription       = "${var.subscription}"
