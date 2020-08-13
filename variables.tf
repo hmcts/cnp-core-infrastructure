@@ -18,4 +18,6 @@ variable "product" {}
 
 variable "component" {}
 
-variable "common_tags" {}
+variable "common_tags" {
+  type = "map"
+}
