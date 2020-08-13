@@ -13,3 +13,9 @@ variable "env" {
 variable "subscription" {}
 
 variable "address_space" {}
+
+variable "product" {}
+
+variable "component" {}
+
+variable "common_tags" {}
