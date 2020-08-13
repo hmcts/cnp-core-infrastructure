@@ -9,7 +9,7 @@ module "vnet" {
 }
 
 module "api-mgmt" {
-  source             = "git@github.com:hmcts/cnp-module-api-mgmt?ref=0.1.0"
+  source             = "git@github.com:hmcts/cnp-module-api-mgmt?ref=master"
   location           = "${var.location}"
   env                = "${var.env}"
   subscription       = "${var.subscription}"
