@@ -1,14 +1,10 @@
 # Temp
 resource "azurerm_resource_group" "asprg" {
-  name     = "mgmt-asp-${var.env}"
-  location = "${var.location}"
+  name      = "mgmt-asp-${var.env}"
+  location  = "${var.location}"
 
-  tags {
+  tags      = {
     environment = "${var.env}"
-  }
-
-  providers                   = {
-    azurerm = "azurerm.previous"
   }
 }
 
