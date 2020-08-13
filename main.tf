@@ -21,6 +21,10 @@ resource "azurerm_subnet" "api-mgmt-subnet" {
   lifecycle {
     ignore_changes = [address_prefixes]
   }
+
+  providers                   = {
+    azurerm = "azurerm.previous"
+  }
 }
 
 module "vnet" {
