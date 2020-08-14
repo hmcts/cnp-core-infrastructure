@@ -1,8 +1,4 @@
-# provider "azurerm" {
-#   version = "=2.22.0"
-#   features {}
-# }
-
 provider "azurerm" {
-  alias = "temp"
+  version = "=2.3.0"
+  features {}
 }
