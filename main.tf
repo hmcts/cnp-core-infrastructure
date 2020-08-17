@@ -6,6 +6,10 @@ module "vnet" {
   source_range          = "${var.address_space}"
   env                   = "${var.env}"
   lb_private_ip_address = "${cidrhost("${cidrsubnet("${var.address_space}", 4, 2)}", -2)}"
+
+  common_tags           = { 
+    "environment" = "${var.env}" 
+  }
 }
 
 module "api-mgmt" {
@@ -17,4 +21,8 @@ module "api-mgmt" {
   vnet_name          = "${module.vnet.vnetname}"
   source_range       = "${var.address_space}"
   source_range_index = "${length(module.vnet.subnet_ids)}"
+
+  common_tags           = {
+    "environment" = "${var.env}"
+  }
 }
