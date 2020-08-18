@@ -14,28 +14,15 @@ variables:
 stages:
   - stage: GetArtifacts
     jobs:
-      - job: Validate
-        pool:
-          vmImage: ${{ variables.agentPool }}
-        steps:
-          - task: InstallSSHKey@0
-            displayName: 'Install SSH Key'
-            inputs:
-              hostName: 'github.com'
-              sshPublicKey: 'not required'
-              sshKeySecureFile: 'jenkins_ssh_pk'
-          - task: TerraformInstaller@0
-            inputs:
-              terraformVersion: ${{ variables.terraformVersion }}
-          - template: pipeline-templates/terraform-plan.yaml
-            parameters:
-              environment: 'sandbox'
-              service_connection: 'azurerm-sandbox'
-              storage_account_rg: 'mgmt-state-store-sandbox'
-              storage_account_name: 'mgmtstatestoresandbox'
-              build: $(Build.BuildNumber)
-              agentPool: ${{ variables.agentPool }}
-              terraformVersion: ${{ variables.terraformVersion }}
+      - template: pipeline-templates/terraform-plan.yaml
+        parameters:
+          environment: 'sandbox'
+          service_connection: 'azurerm-sandbox'
+          storage_account_rg: 'mgmt-state-store-sandbox'
+          storage_account_name: 'mgmtstatestoresandbox'
+          build: $(Build.BuildNumber)
+          agentPool: ${{ variables.agentPool }}
+          terraformVersion: ${{ variables.terraformVersion }}
 
       - job: Archive
         pool:
