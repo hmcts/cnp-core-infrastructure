@@ -1,12 +1,12 @@
 name = "core-infra"
 
-address_space = "10.112.0.0/18"
+address_space = "10.96.128.0/18"
 
-env = "ithc"
-subscription = "qa"
+env = "aat"
+subscription = "nonprod"
 
 common_tags = {
-  environment = "ithc"
+  environment = "aat"
 
   changeUrl = ""
 

@@ -24,6 +24,46 @@ stages:
           agentPool: ${{ variables.agentPool }}
           terraformVersion: ${{ variables.terraformVersion }}
 
+      - template: pipeline-templates/terraform-plan.yaml
+        parameters:
+          environment: 'ithc'
+          service_connection: 'azurerm-qa'
+          storage_account_rg: 'mgmt-state-store-qa'
+          storage_account_name: 'mgmtstatestoreqa'
+          build: $(Build.BuildNumber)
+          agentPool: ${{ variables.agentPool }}
+          terraformVersion: ${{ variables.terraformVersion }}
+
+      - template: pipeline-templates/terraform-plan.yaml
+        parameters:
+          environment: 'perftest'
+          service_connection: 'azurerm-qa'
+          storage_account_rg: 'mgmt-state-store-qa'
+          storage_account_name: 'mgmtstatestoreqa'
+          build: $(Build.BuildNumber)
+          agentPool: ${{ variables.agentPool }}
+          terraformVersion: ${{ variables.terraformVersion }}
+
+      - template: pipeline-templates/terraform-plan.yaml
+        parameters:
+          environment: 'demo'
+          service_connection: 'azurerm-nonprod'
+          storage_account_rg: 'mgmt-state-store-nonprod'
+          storage_account_name: 'mgmtstatestorenonprod'
+          build: $(Build.BuildNumber)
+          agentPool: ${{ variables.agentPool }}
+          terraformVersion: ${{ variables.terraformVersion }}
+
+      - template: pipeline-templates/terraform-plan.yaml
+        parameters:
+          environment: 'aat'
+          service_connection: 'azurerm-nonprod'
+          storage_account_rg: 'mgmt-state-store-nonprod'
+          storage_account_name: 'mgmtstatestorenonprod'
+          build: $(Build.BuildNumber)
+          agentPool: ${{ variables.agentPool }}
+          terraformVersion: ${{ variables.terraformVersion }}
+
       - job: Archive
         pool:
           vmImage: ${{ variables.agentPool }}
@@ -46,6 +86,62 @@ stages:
           service_connection: 'azurerm-sandbox'
           storage_account_rg: 'mgmt-state-store-sandbox'
           storage_account_name: 'mgmtstatestoresandbox'
+          build: $(Build.BuildNumber)
+          agentPool: ${{ variables.agentPool }}
+          terraformVersion: ${{ variables.terraformVersion }}
+
+  - stage: ApplyITHC
+    dependsOn: GetArtifacts
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    jobs:
+      - template: pipeline-templates/terraform-apply.yaml
+        parameters:
+          environment: 'ithc'
+          service_connection: 'azurerm-qa'
+          storage_account_rg: 'mgmt-state-store-qa'
+          storage_account_name: 'mgmtstatestoreqa'
+          build: $(Build.BuildNumber)
+          agentPool: ${{ variables.agentPool }}
+          terraformVersion: ${{ variables.terraformVersion }}
+
+  - stage: ApplyPerftest
+    dependsOn: GetArtifacts
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    jobs:
+      - template: pipeline-templates/terraform-apply.yaml
+        parameters:
+          environment: 'perftest'
+          service_connection: 'azurerm-qa'
+          storage_account_rg: 'mgmt-state-store-qa'
+          storage_account_name: 'mgmtstatestoreqa'
+          build: $(Build.BuildNumber)
+          agentPool: ${{ variables.agentPool }}
+          terraformVersion: ${{ variables.terraformVersion }}
+
+  - stage: ApplyDemo
+    dependsOn: GetArtifacts
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    jobs:
+      - template: pipeline-templates/terraform-apply.yaml
+        parameters:
+          environment: 'demo'
+          service_connection: 'azurerm-qa'
+          storage_account_rg: 'mgmt-state-store-qa'
+          storage_account_name: 'mgmtstatestorenonprod'
+          build: $(Build.BuildNumber)
+          agentPool: ${{ variables.agentPool }}
+          terraformVersion: ${{ variables.terraformVersion }}
+
+  - stage: ApplyAAT
+    dependsOn: GetArtifacts
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    jobs:
+      - template: pipeline-templates/terraform-apply.yaml
+        parameters:
+          environment: 'aat'
+          service_connection: 'azurerm-qa'
+          storage_account_rg: 'mgmt-state-store-qa'
+          storage_account_name: 'mgmtstatestorenonprod'
           build: $(Build.BuildNumber)
           agentPool: ${{ variables.agentPool }}
           terraformVersion: ${{ variables.terraformVersion }}

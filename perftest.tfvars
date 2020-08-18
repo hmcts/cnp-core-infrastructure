@@ -1,8 +1,9 @@
-name="core-infra"
+name = "core-infra"
 
-address_space="10.112.128.0/18"
+address_space = "10.112.128.0/18"
 
-env="perftest"
+env = "perftest"
+subscription = "qa"
 
 common_tags = {
   environment = "perftest"
