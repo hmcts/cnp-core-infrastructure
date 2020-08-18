@@ -12,7 +12,7 @@ variables:
   agentPool: 'ubuntu-18.04'
 
 stages:
-  - stage: PlanInfra
+  - stage: GetArtifacts
     jobs:
       - job: Validate
         pool:
