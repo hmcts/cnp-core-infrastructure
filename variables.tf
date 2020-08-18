@@ -16,7 +16,9 @@ variable "address_space" {}
 
 variable "product" {}
 
-variable "component" {}
+variable "component" {
+  default = ""
+}
 
 variable "common_tags" {
   type = "map"
