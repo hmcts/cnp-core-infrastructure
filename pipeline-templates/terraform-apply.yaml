@@ -14,6 +14,12 @@ jobs:
             - download: current
               displayName: 'Download tfplan'
               artifact: ${{ parameters.environment }}${{ parameters.build }}plan
+            - task: InstallSSHKey@0
+              displayName: 'Install SSH Key'
+              inputs:
+                hostName: 'github.com'
+                sshPublicKey: 'not required'
+                sshKeySecureFile: 'jenkins_ssh_pk'
             - task: CopyFiles@2
               inputs:
                 sourceFolder: '$(Pipeline.Workspace)/${{ parameters.environment }}${{ parameters.build }}plan'
