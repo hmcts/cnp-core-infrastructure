@@ -14,7 +14,9 @@ variable "subscription" {}
 
 variable "address_space" {}
 
-variable "product" {}
+variable "product" {
+  default = "core-infra"
+}
 
 variable "component" {
   default = ""
