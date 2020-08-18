@@ -14,6 +14,12 @@ variables:
 stages:
   - stage: GetArtifacts
     jobs:
+      - task: InstallSSHKey@0
+        displayName: 'Install SSH Key'
+        inputs:
+          hostName: 'github.com'
+          sshPublicKey: 'not required'
+          sshKeySecureFile: 'jenkins_ssh_pk'
       - job: Validate
         pool:
           vmImage: ${{ variables.agentPool }}
