@@ -1,5 +1,5 @@
 variable "name" {
-  type = "string"
+  type = string
 }
 
 variable "location" {
@@ -7,7 +7,7 @@ variable "location" {
 }
 
 variable "env" {
-  type = "string"
+  type = string
 }
 
 variable "subscription" {}
@@ -23,5 +23,5 @@ variable "component" {
 }
 
 variable "common_tags" {
-  type = "map"
+  type = map(string)
 }
