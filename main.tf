@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "core-infra" {
   name     = "core-infra-${var.env}"
-  location = car.location
+  location = var.location
 }
 
 module "vnet" {
