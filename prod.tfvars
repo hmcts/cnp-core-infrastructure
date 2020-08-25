@@ -1,12 +1,12 @@
 name = "core-infra"
 
-address_space = "10.112.0.0/18"
+address_space = "10.96.64.0/18"
 
-env = "ithc"
-subscription = "qa"
+env = "prod"
+subscription = "prod"
 
 common_tags = {
-  environment = "ithc"
+  environment = "prod"
 
   managedBy = "RPE"
 

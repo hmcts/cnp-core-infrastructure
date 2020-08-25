@@ -1,5 +1,5 @@
 variable "name" {
-  type = "string"
+  type = string
 }
 
 variable "location" {
@@ -7,17 +7,21 @@ variable "location" {
 }
 
 variable "env" {
-  type = "string"
+  type = string
 }
-
-variable "tenant_id" {}
-
-variable "client_id" {}
 
 variable "subscription" {}
 
-variable "subscription_id" {}
-
-variable "secret_access_key" {}
-
 variable "address_space" {}
+
+variable "product" {
+  default = "core-infra"
+}
+
+variable "component" {
+  default = ""
+}
+
+variable "common_tags" {
+  type = map(string)
+}

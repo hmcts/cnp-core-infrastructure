@@ -13,8 +13,6 @@ location
 
 address_space
 
-address_prefixes
-
 env
 ```
 
@@ -59,10 +57,6 @@ The following variables need to be configured in the variables.tf
 ```terraform
 variable "address_space" {
   default = ["10.0.0.0/16"]
-}
-
-variable "address_prefixes" {
-  default = ["10.0.0.0/24", "10.0.1.0/24"]
 }
 ```
 
