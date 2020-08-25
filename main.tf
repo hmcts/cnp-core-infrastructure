@@ -1,3 +1,10 @@
+resource "azurerm_resource_group" "core-infra" {
+  name     = "core-infra-${var.env}"
+  location = var.location
+
+  tags     = var.common_tags
+}
+
 module "vnet" {
   source                = "git@github.com:hmcts/cnp-module-vnet?ref=fix-address-prefix"
   name                  = var.name
