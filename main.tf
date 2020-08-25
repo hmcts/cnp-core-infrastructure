@@ -7,7 +7,7 @@ module "vnet" {
   env                   = var.env
   lb_private_ip_address = cidrhost(cidrsubnet(var.address_space, 4, 2), -2)
 
-  common_tags           = merge(var.common_tags, map("lastUpdated", timestamp()))
+  common_tags           = var.common_tags
 }
 
 module "api-mgmt" {
