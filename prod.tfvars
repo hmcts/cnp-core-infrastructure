@@ -8,8 +8,6 @@ subscription = "prod"
 common_tags = {
   environment = "prod"
 
-  changeUrl = ""
-
   managedBy = "RPE"
 
   BuiltFrom = "https://github.com/hmcts/cnp-core-infrastructure"

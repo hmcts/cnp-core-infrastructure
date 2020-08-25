@@ -8,8 +8,6 @@ subscription = "qa"
 common_tags = {
   environment = "perftest"
 
-  changeUrl = ""
-
   managedBy = "RPE"
 
   BuiltFrom = "https://github.com/hmcts/cnp-core-infrastructure"

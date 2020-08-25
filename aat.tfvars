@@ -8,8 +8,6 @@ subscription = "nonprod"
 common_tags = {
   environment = "aat"
 
-  changeUrl = ""
-
   managedBy = "RPE"
 
   BuiltFrom = "https://github.com/hmcts/cnp-core-infrastructure"
