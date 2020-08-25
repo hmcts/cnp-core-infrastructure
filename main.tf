@@ -1,6 +1,8 @@
 resource "azurerm_resource_group" "core-infra" {
   name     = "core-infra-${var.env}"
   location = var.location
+
+  tags     = var.common_tags
 }
 
 module "vnet" {
