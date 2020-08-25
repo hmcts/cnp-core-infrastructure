@@ -14,7 +14,6 @@ module "vnet" {
 
 module "api-mgmt" {
   source             = "git@github.com:hmcts/cnp-module-api-mgmt?ref=updated-for-core-infra"
-  count              = var.api_mgmt_count
   location           = var.location
   env                = var.env
   subscription       = var.subscription
