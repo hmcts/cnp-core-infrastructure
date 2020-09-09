@@ -4,6 +4,7 @@ address_space = "10.100.128.0/18"
 
 env = "sandbox"
 subscription = "sandbox"
+virtual_network_type = "Internal"
 
 common_tags = {
   environment = "sandbox"
