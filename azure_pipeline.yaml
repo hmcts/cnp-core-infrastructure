@@ -54,25 +54,25 @@ stages:
           agentPool: ${{ variables.agentPool }}
           terraformVersion: ${{ variables.terraformVersion }}
 
-      # - template: pipeline-templates/terraform-plan.yaml
-      #   parameters:
-      #     environment: 'aat'
-      #     service_connection: 'azurerm-nonprod'
-      #     storage_account_rg: 'mgmt-state-store-nonprod'
-      #     storage_account_name: 'mgmtstatestorenonprod'
-      #     build: $(Build.BuildNumber)
-      #     agentPool: ${{ variables.agentPool }}
-      #     terraformVersion: ${{ variables.terraformVersion }}
+      - template: pipeline-templates/terraform-plan.yaml
+        parameters:
+          environment: 'aat'
+          service_connection: 'azurerm-nonprod'
+          storage_account_rg: 'mgmt-state-store-nonprod'
+          storage_account_name: 'mgmtstatestorenonprod'
+          build: $(Build.BuildNumber)
+          agentPool: ${{ variables.agentPool }}
+          terraformVersion: ${{ variables.terraformVersion }}
 
-      # - template: pipeline-templates/terraform-plan.yaml
-      #   parameters:
-      #     environment: 'prod'
-      #     service_connection: 'azurerm-prod'
-      #     storage_account_rg: 'mgmt-state-store-prod'
-      #     storage_account_name: 'mgmtstatestoreprod'
-      #     build: $(Build.BuildNumber)
-      #     agentPool: ${{ variables.agentPool }}
-      #     terraformVersion: ${{ variables.terraformVersion }}
+      - template: pipeline-templates/terraform-plan.yaml
+        parameters:
+          environment: 'prod'
+          service_connection: 'azurerm-prod'
+          storage_account_rg: 'mgmt-state-store-prod'
+          storage_account_name: 'mgmtstatestoreprod'
+          build: $(Build.BuildNumber)
+          agentPool: ${{ variables.agentPool }}
+          terraformVersion: ${{ variables.terraformVersion }}
 
       - job: Archive
         pool:
