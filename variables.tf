@@ -25,3 +25,7 @@ variable "component" {
 variable "common_tags" {
   type = map(string)
 }
+
+variable "virtual_network_type" {
+  default = "External"
+}
