@@ -142,19 +142,19 @@ stages:
           agentPool: ${{ variables.agentPool }}
           terraformVersion: ${{ variables.terraformVersion }}
 
-  # - stage: ApplyAAT
-  #   dependsOn: GetArtifacts
-  #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-  #   jobs:
-  #     - template: pipeline-templates/terraform-apply.yaml
-  #       parameters:
-  #         environment: 'aat'
-  #         service_connection: 'azurerm-nonprod'
-  #         storage_account_rg: 'mgmt-state-store-nonprod'
-  #         storage_account_name: 'mgmtstatestorenonprod'
-  #         build: $(Build.BuildNumber)
-  #         agentPool: ${{ variables.agentPool }}
-  #         terraformVersion: ${{ variables.terraformVersion }}
+  - stage: ApplyAAT
+    dependsOn: GetArtifacts
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    jobs:
+      - template: pipeline-templates/terraform-apply.yaml
+        parameters:
+          environment: 'aat'
+          service_connection: 'azurerm-nonprod'
+          storage_account_rg: 'mgmt-state-store-nonprod'
+          storage_account_name: 'mgmtstatestorenonprod'
+          build: $(Build.BuildNumber)
+          agentPool: ${{ variables.agentPool }}
+          terraformVersion: ${{ variables.terraformVersion }}
 
   # - stage: ApplyProd
   #   dependsOn: GetArtifacts
