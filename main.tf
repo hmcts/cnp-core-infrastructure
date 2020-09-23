@@ -18,7 +18,7 @@ module "vnet" {
 }
 
 module "api-mgmt" {
-  source               = "git@github.com:hmcts/cnp-module-api-mgmt?ref=master"
+  source               = "git@github.com:hmcts/cnp-module-api-mgmt?ref=u878-api_mgmt_tf"
   location             = var.location
   env                  = var.env
   vnet_rg_name         = module.vnet.resourcegroup_name
