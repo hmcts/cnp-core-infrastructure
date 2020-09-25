@@ -33,5 +33,5 @@ resource "azurerm_api_management_named_value" "environment-named-value" {
   resource_group_name = module.vnet.resourcegroup_name
   api_management_name = module.api-mgmt.api_mgmt_name
   display_name        = "environment"
-  value               = "${var.env}"
+  value               = var.env
 }
