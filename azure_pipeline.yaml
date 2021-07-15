@@ -8,7 +8,7 @@ trigger:
     - master
     
 variables:
-  terraformVersion: 1.0.2
+  terraformVersion: 0.13.5
   agentPool: 'ubuntu-18.04'
 
 stages:
