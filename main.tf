@@ -30,12 +30,13 @@ module "api-mgmt" {
 
 module "api-mgmt-private" {
   source             = "git@github.com:hmcts/cnp-module-api-mgmt?ref=apimprivate"
-  name               = "apim-arm-deployment"
+  # name               = "apim-arm-deployment"
   location           = var.location
   sku_name           = "Premium"
   vnet_rg_name       = module.vnet.resourcegroup_name
   vnet_name          = module.vnet.vnetname
   source_range       = var.address_space
+  source_range_index = length(module.vnet.subnet_ids)
   env                = var.env
   virtualNetworkType = var.virtual_network_type
 }
