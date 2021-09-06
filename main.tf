@@ -39,6 +39,7 @@ module "api-mgmt-private" {
   source_range_index = length(module.vnet.subnet_ids)
   env                = var.env
   virtualNetworkType = var.virtual_network_type
+  common_tags        = var.common_tags
 }
 
 resource "azurerm_api_management_named_value" "environment-named-value" {
