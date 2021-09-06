@@ -14,6 +14,8 @@ variable "subscription" {}
 
 variable "address_space" {}
 
+variable "apim_subnet_address_prefix" {}
+
 variable "product" {
   default = "core-infra"
 }

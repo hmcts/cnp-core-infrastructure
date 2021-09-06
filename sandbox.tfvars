@@ -1,6 +1,7 @@
 name = "core-infra"
 
 address_space = "10.100.128.0/18"
+apim_subnet_address_prefix = "10.100.161.0/24"
 
 env = "sandbox"
 subscription = "sandbox"

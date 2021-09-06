@@ -35,8 +35,9 @@ module "api-mgmt-private" {
   sku_name           = "Premium"
   vnet_rg_name       = module.vnet.resourcegroup_name
   vnet_name          = module.vnet.vnetname
-  source_range       = var.address_space
-  source_range_index = length(module.vnet.subnet_ids)
+  # source_range       = var.address_space
+  # source_range_index = length(module.vnet.subnet_ids)
+  apim_subnet_address_prefix = var.apim_subnet_address_prefix
   env                = var.env
   virtualNetworkType = var.virtual_network_type
   common_tags        = var.common_tags
