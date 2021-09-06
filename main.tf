@@ -2,7 +2,7 @@ resource "azurerm_resource_group" "core-infra" {
   name     = "core-infra-${var.env}"
   location = var.location
 
-  tags     = var.common_tags
+  tags = var.common_tags
 }
 
 module "vnet" {
@@ -14,7 +14,7 @@ module "vnet" {
   env                   = var.env
   lb_private_ip_address = cidrhost(cidrsubnet(var.address_space, 4, 2), -2)
 
-  common_tags           = var.common_tags
+  common_tags = var.common_tags
 }
 
 module "api-mgmt" {
@@ -29,14 +29,14 @@ module "api-mgmt" {
 }
 
 module "api-mgmt-private" {
-  source                     = "git@github.com:hmcts/cnp-module-api-mgmt?ref=apimprivate"
-  name                = "apim-arm-deployment"
-    location      = var.location
-        sku_name      = "Premium"
-   vnet_rg_name         = module.vnet.resourcegroup_name
-  vnet_name            = module.vnet.vnetname
-  source_range         = var.address_space
-  env                  = var.env
+  source             = "git@github.com:hmcts/cnp-module-api-mgmt?ref=apimprivate"
+  name               = "apim-arm-deployment"
+  location           = var.location
+  sku_name           = "Premium"
+  vnet_rg_name       = module.vnet.resourcegroup_name
+  vnet_name          = module.vnet.vnetname
+  source_range       = var.address_space
+  env                = var.env
   virtualNetworkType = var.virtual_network_type
 }
 
