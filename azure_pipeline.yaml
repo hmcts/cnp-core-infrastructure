@@ -17,7 +17,7 @@ stages:
       - template: pipeline-templates/terraform-plan.yaml
         parameters:
           environment: 'sandbox'
-          service_connection: 'azurerm-sandbox'
+          service_connection: 'DCD-CFTAPPS-SBOX'
           storage_account_rg: 'mgmt-state-store-sandbox'
           storage_account_name: 'mgmtstatestoresandbox'
           build: $(Build.BuildNumber)
@@ -93,7 +93,7 @@ stages:
       - template: pipeline-templates/terraform-apply.yaml
         parameters:
           environment: 'sandbox'
-          service_connection: 'azurerm-sandbox'
+          service_connection: 'DCD-CFTAPPS-SBOX'
           storage_account_rg: 'mgmt-state-store-sandbox'
           storage_account_name: 'mgmtstatestoresandbox'
           build: $(Build.BuildNumber)
