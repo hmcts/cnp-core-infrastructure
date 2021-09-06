@@ -28,10 +28,30 @@ module "api-mgmt" {
   virtual_network_type = var.virtual_network_type
 }
 
+module "api-mgmt-private" {
+  source                     = "git@github.com:hmcts/cnp-module-api-mgmt?ref=apimprivate"
+  name                = "apim-arm-deployment"
+    location      = var.location
+        sku_name      = "Premium"
+   vnet_rg_name         = module.vnet.resourcegroup_name
+  vnet_name            = module.vnet.vnetname
+  source_range         = var.address_space
+  env                  = var.env
+  virtualNetworkType = var.virtual_network_type
+}
+
 resource "azurerm_api_management_named_value" "environment-named-value" {
   name                = "environment"
   resource_group_name = module.vnet.resourcegroup_name
   api_management_name = module.api-mgmt.api_mgmt_name
+  display_name        = "environment"
+  value               = var.env
+}
+
+resource "azurerm_api_management_named_value" "environment-named-value-private" {
+  name                = "environment"
+  resource_group_name = module.vnet.resourcegroup_name
+  api_management_name = module.api-mgmt-private.api_mgmt_name
   display_name        = "environment"
   value               = var.env
 }
