@@ -31,7 +31,7 @@ module "api-mgmt" {
 module "api-mgmt-private" {
   source             = "git@github.com:hmcts/cnp-module-api-mgmt?ref=apimprivate"
   location           = var.location
-  sku_name           = "Premium"
+  sku_name           = "Developer"
   vnet_rg_name       = module.vnet.resourcegroup_name
   vnet_name          = module.vnet.vnetname
   apim_subnet_address_prefix = var.apim_subnet_address_prefix
