@@ -2,8 +2,10 @@ name = "core-infra"
 
 address_space = "10.112.128.0/18"
 
-env = "perftest"
+env          = "perftest"
 subscription = "qa"
+
+postgresql_subnet_cidr_blocks = ["10.112.155.0/24"]
 
 common_tags = {
   environment = "perftest"

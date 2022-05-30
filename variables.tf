@@ -29,3 +29,8 @@ variable "common_tags" {
 variable "virtual_network_type" {
   default = "External"
 }
+
+variable "postgresql_subnet_cidr_blocks" {
+  type    = set(string)
+  default = []
+}
