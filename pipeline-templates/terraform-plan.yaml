@@ -28,7 +28,7 @@ jobs:
         displayName: Plan - ${{ parameters.environment }}
         inputs:
           command: 'plan'
-          commandOptions: '-out=${{ parameters.environment }}${{ parameters.build }}plan -var-file=$(System.DefaultWorkingDirectory)/${{ parameters.environment }}.tfvars -var builtFrom=$(Build.Repository.Name)'
+          commandOptions: '-out=${{ parameters.environment }}${{ parameters.build }}plan -var-file=$(System.DefaultWorkingDirectory)/${{ parameters.environment }}.tfvars -var builtFrom=$(Build.Repository.Name) -var environment=${{ parameters.environment }}'
           workingDirectory: '$(System.DefaultWorkingDirectory)'
           environmentServiceName: '${{ parameters.service_connection }}'
           publishPlanResults: $(System.JobDisplayName)
