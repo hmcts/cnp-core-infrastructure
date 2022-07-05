@@ -26,7 +26,7 @@ module "vnet" {
 }
 
 module "api-mgmt" {
-  source               = "git@github.com:hmcts/cnp-module-api-mgmt?ref=master"
+  source               = "git@github.com:hmcts/cnp-module-api-mgmt?ref=DTSPO-9049/add-tags"
   location             = var.location
   env                  = var.env
   vnet_rg_name         = module.vnet.resourcegroup_name
@@ -34,6 +34,8 @@ module "api-mgmt" {
   source_range         = var.address_space
   source_range_index   = length(module.vnet.subnet_ids)
   virtual_network_type = var.virtual_network_type
+
+  common_tags = module.ctags.common_tags
 }
 
 resource "azurerm_api_management_named_value" "environment-named-value" {
