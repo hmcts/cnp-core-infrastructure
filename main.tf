@@ -1,8 +1,15 @@
+module "ctags" {
+  source      = "git::https://github.com/hmcts/terraform-module-common-tags.git?ref=master"
+  environment = var.environment
+  product     = var.product
+  builtFrom   = var.builtFrom
+}
+
 resource "azurerm_resource_group" "core-infra" {
   name     = "core-infra-${var.env}"
   location = var.location
 
-  tags = var.common_tags
+  tags = module.ctags.common_tags
 }
 
 module "vnet" {
@@ -15,7 +22,7 @@ module "vnet" {
   lb_private_ip_address         = cidrhost(cidrsubnet(var.address_space, 4, 2), -2)
   postgresql_subnet_cidr_blocks = var.postgresql_subnet_cidr_blocks
 
-  common_tags = var.common_tags
+  common_tags = module.ctags.common_tags
 }
 
 module "api-mgmt" {

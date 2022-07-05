@@ -34,3 +34,11 @@ variable "postgresql_subnet_cidr_blocks" {
   type    = set(string)
   default = []
 }
+
+variable "builtFrom" {
+  type = string
+}
+
+variable "environment" {
+  type = string
+}
