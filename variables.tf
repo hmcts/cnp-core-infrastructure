@@ -36,5 +36,9 @@ variable "postgresql_subnet_cidr_blocks" {
 }
 
 variable "builtFrom" {
-  default = "UK South"
+  type = string
+}
+
+variable "environment" {
+  type = string
 }
