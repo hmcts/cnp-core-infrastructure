@@ -26,7 +26,7 @@ module "vnet" {
 }
 
 module "api-mgmt" {
-  source               = "git@github.com:hmcts/cnp-module-api-mgmt?ref=DTSPO-9049/add-tags"
+  source               = "git@github.com:hmcts/cnp-module-api-mgmt?ref=master"
   location             = var.location
   env                  = var.env
   vnet_rg_name         = module.vnet.resourcegroup_name
