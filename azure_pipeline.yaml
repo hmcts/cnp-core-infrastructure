@@ -23,7 +23,7 @@ stages:
           build: $(Build.BuildNumber)
           agentPool: ${{ variables.agentPool }}
           terraformVersion: ${{ variables.terraformVersion }}
-
+      # trigger build
       - template: pipeline-templates/terraform-plan.yaml
         parameters:
           environment: 'ithc'
