@@ -6,7 +6,7 @@ trigger:
   branches:
     include:
     - master
-    
+
 variables:
   terraformVersion: 0.13.5
   agentPool: 'ubuntu-latest'
