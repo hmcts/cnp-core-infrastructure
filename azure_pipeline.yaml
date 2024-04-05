@@ -5,93 +5,13 @@ trigger:
   batch: true
   branches:
     include:
-      - master
-
+    - master
+    
 variables:
   terraformVersion: 0.13.5
   agentPool: 'ubuntu-latest'
 
-
-pr:
-  branches:
-    include:
-      - master
-
-resources:
-  repositories:
-    - repository: cnp-azuredevops-libraries
-      type: github
-      ref: refs/heads/master
-      name: hmcts/cnp-azuredevops-libraries
-      endpoint: 'hmcts'
-
-parameters:
-  - name: overrideAction
-    type: string
-    default: plan
-    values:
-      - plan
-      - apply
-      - destroy
-
-  - name: environment_components
-    type: object
-    default:
-      - deployment: 'sandbox'
-        environment: 'sandbox'
-        service_connection: 'azurerm-sandbox'
-        storage_account_rg: 'mgmt-state-store-sandbox'
-        storage_account_name: 'mgmtstatestoresandbox'
-        dependsOn: 'Precheck'
-
-      # - deployment: 'ithc'
-      #   environment: 'ithc'
-      #   service_connection: 'azurerm-qa'
-      #   storage_account_rg: 'mgmt-state-store-qa'
-      #   storage_account_name: 'mgmtstatestoreqa'
-      #   dependsOn: 'sandbox'
-
-      # - deployment: 'perftest'
-      #   environment: 'perftest'
-      #   service_connection: 'azurerm-qa'
-      #   storage_account_rg: 'mgmt-state-store-qa'
-      #   storage_account_name: 'mgmtstatestoreqa'
-      #   dependsOn: 'ithc'
-
-      # - deployment: 'demo'
-      #   environment: 'demo'
-      #   service_connection: 'azurerm-nonprod'
-      #   storage_account_rg: 'mgmt-state-store-nonprod'
-      #   storage_account_name: 'mgmtstatestorenonprod'
-      #   dependsOn: 'perftest'
-
-      # - deployment: 'aat'
-      #   environment: 'aat'
-      #   service_connection: 'azurerm-nonprod'
-      #   storage_account_rg: 'mgmt-state-store-nonprod'
-      #   storage_account_name: 'mgmtstatestorenonprod'
-      #   dependsOn: 'demo'
-
-      # - deployment: 'prod'
-      #   environment: 'prod'
-      #   service_connection: 'azurerm-prod'
-      #   storage_account_rg: 'mgmt-state-store-prod'
-      #   storage_account_name: 'mgmtstatestoreprod'
-      #   dependsOn: 'aat'
-
 stages:
-  - stage: Precheck
-    jobs:
-      - job:
-        pool: hmcts-sds-ptl
-        steps:
-          - template: steps/terraform-precheck.yaml@cnp-azuredevops-libraries
-            parameters:
-              keyvaultName: 'infra-vault-nonprod'
-              keyvaultSecret: 'azure-devops-sp-token'
-              serviceConnection: 'azurerm-sandbox'
-              overrideAction: ${{ parameters.overrideAction }}
-
   - stage: GetArtifacts
     jobs:
       - template: pipeline-templates/terraform-plan.yaml
