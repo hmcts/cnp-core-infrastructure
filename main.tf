@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "core-infra" {
 }
 
 module "vnet" {
-  source                        = "https://github.com:hmcts/cnp-module-vnet?ref=fix-address-prefix"
+  source                        = "git::https://github.com/hmcts/cnp-module-vnet?ref=fix-address-prefix"
   name                          = var.name
   location                      = var.location
   address_space                 = var.address_space
@@ -27,7 +27,7 @@ module "vnet" {
 }
 
 module "api-mgmt" {
-  source               = "git@github.com:hmcts/cnp-module-api-mgmt?ref=master"
+  source               = "git::https://github.com/hmcts/cnp-module-api-mgmt?ref=master"
   location             = var.location
   env                  = var.env
   vnet_rg_name         = module.vnet.resourcegroup_name
