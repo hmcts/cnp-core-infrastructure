@@ -16,3 +16,10 @@ common_tags = {
 
   contactSlackChannel = "#rpe"
 }
+
+additional_subnets = [
+  {
+    name           = "postgresql"
+    address_prefix = "10.96.92.0/24"
+  }
+]
