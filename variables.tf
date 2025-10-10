@@ -35,12 +35,6 @@ variable "postgresql_subnet_cidr_blocks" {
   default = []
 }
 
-variable "postgresql_subnet_service_endpoints" {
-  type    = list(string)
-  default = ["Microsoft.Storage"]
-  description = "Service endpoints for PostgreSQL subnet"
-}
-
 variable "builtFrom" {
   type = string
 }

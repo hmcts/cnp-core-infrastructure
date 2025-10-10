@@ -7,8 +7,6 @@ subscription = "nonprod"
 
 postgresql_subnet_cidr_blocks = ["10.96.158.0/24"]
 
-postgresql_subnet_service_endpoints = ["Microsoft.Storage"]
-
 common_tags = {
   environment = "aat"
 
