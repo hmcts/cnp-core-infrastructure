@@ -7,6 +7,8 @@ subscription = "qa"
 
 postgresql_subnet_cidr_blocks = ["10.112.22.0/24"]
 
+postgresql_subnet_service_endpoints = ["Microsoft.Storage", "Microsoft.Sql"]
+
 common_tags = {
   environment = "ithc"
 

@@ -7,6 +7,8 @@ subscription = "prod"
 
 postgresql_subnet_cidr_blocks = ["10.96.92.0/24"]
 
+postgresql_subnet_service_endpoints = ["Microsoft.Storage"]
+
 common_tags = {
   environment = "prod"
 
