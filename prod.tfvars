@@ -17,18 +17,4 @@ common_tags = {
   contactSlackChannel = "#rpe"
 }
 
-additional_subnets = [
-  {
-    name           = "postgresql"
-    address_prefix = "10.96.92.0/24"
-    delegation = [
-      {
-        name = "fs"
-        service_delegation = {
-          name    = "Microsoft.DBforPostgreSQL/flexibleServers"
-          actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
-        }
-      }
-    ]
-  }
-]
+postgresql_address_prefix = "10.96.92.0/24"

@@ -48,6 +48,6 @@ variable "expiresAfter" {
   default     = "3000-01-01"
 }
 
-variable "additional_subnets" {
-  default = []
+variable "postgresql_subnet_prefix" {
+  default = ""
 }
