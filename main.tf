@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "core-infra" {
 }
 
 module "vnet" {
-  source                        = "git::https://github.com/hmcts/cnp-module-vnet?ref=master"
+  source                        = "git::https://github.com/hmcts/cnp-module-vnet?ref=additional-subnet-support"
   name                          = var.name
   location                      = var.location
   address_space                 = var.address_space
