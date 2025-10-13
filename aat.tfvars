@@ -16,3 +16,5 @@ common_tags = {
 
   contactSlackChannel = "#rpe"
 }
+
+postgresql_address_prefix = "10.96.158.0/24"
