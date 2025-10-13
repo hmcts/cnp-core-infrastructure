@@ -22,7 +22,7 @@ module "vnet" {
   env                           = var.env
   lb_private_ip_address         = cidrhost(cidrsubnet(var.address_space, 4, 2), -2)
   postgresql_subnet_cidr_blocks = var.postgresql_subnet_cidr_blocks
-  additional_subnets            = local.additional_subnets
+  additional_subnets            = var.env == "aat" || "prod" ? local.additional_subnets : []
 
   common_tags = module.ctags.common_tags
 }
