@@ -3,7 +3,7 @@ locals {
     {
       name              = "postgresql"
       address_prefixes  = [var.postgresql_subnet_prefix]
-      service_endpoints = ["Microsoft.Storage", "Microsoft.Sql"]
+      service_endpoints = ["Microsoft.Storage"]
       delegations = {
         fs = {
           name         = "fs"
