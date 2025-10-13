@@ -21,7 +21,7 @@ additional_subnets = [
   {
     name           = "postgresql"
     address_prefix = "10.96.158.0/24"
-    delegation = [{
+    delegation = {
       name = "fs"
       service_delegation = [
         {
@@ -29,6 +29,6 @@ additional_subnets = [
           actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
         }
       ]
-    }]
+    }
   }
 ]
