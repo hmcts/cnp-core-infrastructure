@@ -9,7 +9,7 @@ jobs:
       #     hostName: 'github.com'
       #     sshPublicKey: 'not required'
       #     sshKeySecureFile: 'jenkins_ssh_pk'
-      - task: TerraformInstaller@0
+      - task: TerraformInstaller@2
         inputs:
           terraformVersion: ${{ parameters.terraformVersion }}
       - task: TerraformCLI@2
